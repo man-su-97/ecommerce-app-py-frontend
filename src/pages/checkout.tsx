@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { responseToast } from "../utils/features";
 import { resetCart } from "../redux/reducers/cartReducer";
-import { RazorpayOptions } from "razorpay";
 
 const CheckOutForm = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -84,7 +83,7 @@ const CheckOutForm = () => {
               discount,
               shippingCharges,
               total,
-              user: user?._id!,
+              user: user?._id,
             },
           };
 

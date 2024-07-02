@@ -50,7 +50,7 @@ const NewDiscount = () => {
         toast.error(data.message || "Failed to create coupon.");
       }
     } catch (error) {
-      // Handle Axios errors
+      // Handle errors
       if (axios.isAxiosError(error)) {
         if (error.response) {
           console.error("Server Error:", error.response.data);
@@ -59,9 +59,13 @@ const NewDiscount = () => {
           console.error("Request Error:", error.message);
           toast.error("Request Error");
         }
-      } else {
+      } else if (error instanceof Error) {
+        // Handle other errors (like network errors)
         console.error("Network Error:", error.message);
         toast.error("Network Error");
+      } else {
+        console.error("Unexpected Error:", error);
+        toast.error("Unexpected Error");
       }
     } finally {
       setBtnLoading(false); // Reset loading state after form submission
