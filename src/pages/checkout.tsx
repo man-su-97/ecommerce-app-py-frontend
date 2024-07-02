@@ -1,16 +1,16 @@
 import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useNewOrderMutation } from "../redux/api/orderAPI";
 import { RootState, server } from "../redux/store";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { responseToast } from "../utils/features";
 import { resetCart } from "../redux/reducers/cartReducer";
+import { RazorpayOptions } from "razorpay";
 
 const CheckOutForm = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     shippingInfo,
@@ -24,7 +24,7 @@ const CheckOutForm = () => {
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const [newOrder] = useNewOrderMutation();
+  // const [newOrder] = useNewOrderMutation();
   const dispatch = useDispatch();
 
   const loadRazorpayScript = () => {
@@ -60,7 +60,7 @@ const CheckOutForm = () => {
         throw new Error("Razorpay key not found in backend response");
       }
 
-      const options = {
+      const options: RazorpayOptions = {
         key: razorpayKey,
         amount: total * 100, // amount in paise
         currency: "INR",
@@ -68,7 +68,7 @@ const CheckOutForm = () => {
         description: "Test Transaction",
         image: "",
         order_id: orderId,
-        handler: async (response: any) => {
+        handler: async (response) => {
           const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
             response;
 
@@ -105,7 +105,7 @@ const CheckOutForm = () => {
 
             if (verificationResult.success) {
               dispatch(resetCart());
-              responseToast(verificationResult, Navigate, "/orders");
+              responseToast(verificationResult, navigate, "/orders");
             } else {
               toast.error("Payment verification failed");
             }
@@ -116,10 +116,9 @@ const CheckOutForm = () => {
 
           setIsProcessing(false);
         },
-
         prefill: {
-          name: user?.name || "",
-          email: user?.email || "",
+          name: user?.name ?? "",
+          email: user?.email ?? "",
           contact: shippingInfo.contactNumber,
         },
         notes: {
