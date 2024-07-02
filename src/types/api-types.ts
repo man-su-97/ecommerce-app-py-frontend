@@ -35,6 +35,7 @@ export type MessageResponse = {
 export type AllUsersResponse = {
   success: boolean;
   users: User[];
+  allUsers: User[];
 };
 
 export type UserResponse = {

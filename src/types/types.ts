@@ -1,4 +1,5 @@
 export type User = {
+  mobile: string;
   name: string;
   email: string;
   photo: string;
