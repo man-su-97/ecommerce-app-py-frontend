@@ -47,7 +47,7 @@ const ProductSlider = () => {
     );
 
   // Handle error state
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {"Error from Slider file line 50"}</div>;
 
   console.log("slider- ", latestProducts);
 
