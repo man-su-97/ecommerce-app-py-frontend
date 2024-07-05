@@ -14,14 +14,15 @@ import { FcGoogle } from "react-icons/fc";
 import signInImage from "../assets/Adult toy store.png";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSignUpMutation } from "../redux/api/userAPI";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 export function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { isLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
-  const handleEmailPasswordSignIn = async (event) => {
+  const handleEmailPasswordSignIn = async (event: React.FocusEvent) => {
     event.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -33,7 +34,7 @@ export function SignInSide() {
       console.log("Signed in user:", user);
 
       const res = await login({
-        email: user.email,
+        email: user.email || "",
         name: user.displayName || "",
         photo: user.photoURL || "",
         gender: "",
@@ -47,12 +48,13 @@ export function SignInSide() {
         const data = await getUser(user.uid);
         dispatch(userExist(data.user));
       } else {
-        const error = res.error;
-        const message = error.data.message;
+        const error = res.error as ErrorResponse;
+        const message = error.data?.message || "Unknown error occured";
         toast.error(message);
       }
-    } catch (error) {
-      toast.error(`Sign In Failed: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as Error;
+      toast.error(`Sign In Failed: ${err.message}`);
       console.error("Sign in Error: ", error);
     }
   };
@@ -63,22 +65,26 @@ export function SignInSide() {
       const { user } = await signInWithPopup(auth, provider);
 
       const res = await login({
-        email: user.email,
-        name: user.displayName,
-        photo: user.photoURL,
-        gender: "",
+        email: user.email || "",
+        name: user.displayName || "",
+        photo: user.photoURL || "",
+        // gender: "other",
         dob: "",
         _id: user.uid,
         role: "user",
+        // password: "",
       });
 
-      if ("data" in res) {
+      if (res && res.data) {
         toast.success(res.data.message);
         const data = await getUser(user.uid);
         dispatch(userExist(data.user));
       } else {
-        const error = res.error;
-        const message = error.data.message;
+        const error = res as FetchBaseQueryError;
+        const message =
+          (error.data as { message?: string })?.message ||
+          "Unknown error occurred";
+
         toast.error(message);
       }
 
@@ -152,7 +158,7 @@ export function SignInSide() {
                 </div>
                 <div className="text-sm">
                   <Link
-                    to="#"
+                    to="/forgot-password"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot your password?
@@ -206,11 +212,12 @@ export function SignUp() {
     mobile: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -222,7 +229,7 @@ export function SignUp() {
 
       const res = await signUp({
         name: `${formData.firstName} ${formData.lastName}`,
-        email: user.email,
+        email: user.email || "",
         password: formData.password,
         mobile: formData.mobile,
         _id: user.uid,
@@ -230,6 +237,8 @@ export function SignUp() {
 
       if ("data" in res) {
         toast.success(res.data.message);
+        const data = await getUser(user.uid);
+        dispatch(userExist(data.user));
       } else {
         const error = res.error;
         toast.error(error.data.message);
@@ -250,7 +259,7 @@ export function SignUp() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div className="flex flex-col sm:flex-row sm:space-x-3">
-                <div>
+                <div className="py-2">
                   <label htmlFor="firstName" className="sr-only">
                     First Name
                   </label>
@@ -266,7 +275,7 @@ export function SignUp() {
                     placeholder="First Name"
                   />
                 </div>
-                <div>
+                <div className="py-2">
                   <label htmlFor="lastName" className="sr-only">
                     Last Name
                   </label>
@@ -283,7 +292,7 @@ export function SignUp() {
                   />
                 </div>
               </div>
-              <div>
+              <div className="py-2">
                 <label htmlFor="email" className="sr-only">
                   Email Address
                 </label>
@@ -299,7 +308,7 @@ export function SignUp() {
                   placeholder="Email Address"
                 />
               </div>
-              <div>
+              <div className="py-2">
                 <label htmlFor="password" className="sr-only">
                   Password
                 </label>
@@ -315,7 +324,7 @@ export function SignUp() {
                   placeholder="Password"
                 />
               </div>
-              <div>
+              <div className="py-2">
                 <label htmlFor="mobile" className="sr-only">
                   Mobile Number
                 </label>
@@ -330,7 +339,7 @@ export function SignUp() {
                   placeholder="Mobile Number (optional)"
                 />
               </div>
-              <div>
+              <div className="py-2">
                 <label className="flex items-center">
                   <input
                     id="allowExtraEmails"
@@ -359,7 +368,7 @@ export function SignUp() {
               <span className="block text-sm text-center text-gray-500">
                 Already have an account?{" "}
                 <Link
-                  to="/sign-in"
+                  to="/login"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Sign in

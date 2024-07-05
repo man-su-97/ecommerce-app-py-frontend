@@ -4,8 +4,9 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { RootState, server } from "../redux/store";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { responseToast } from "../utils/features";
+import { responseToast, ResType } from "../utils/features";
 import { resetCart } from "../redux/reducers/cartReducer";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const CheckOutForm = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -100,17 +101,48 @@ const CheckOutForm = () => {
             );
 
             const verificationResult = verificationRes.data;
-            console.log("verifc-", verificationRes);
+            console.log("Verification Response: ", verificationRes);
 
-            if (verificationResult.success) {
+            if (verificationResult && verificationResult.success) {
               dispatch(resetCart());
-              responseToast(verificationResult, navigate, "/orders");
+
+              const adaptedResponse: ResType = {
+                data: {
+                  success: verificationResult.success,
+                  message:
+                    verificationResult.message ||
+                    "Payment verified successfully!",
+                },
+              };
+
+              responseToast(adaptedResponse, navigate, "/orders");
             } else {
-              toast.error("Payment verification failed");
+              const adaptedError: ResType = {
+                error: {
+                  status: 400,
+                  data: {
+                    success: false,
+                    message:
+                      verificationResult.message ||
+                      "Payment verification failed",
+                  },
+                } as FetchBaseQueryError,
+              };
+              responseToast(adaptedError, null, "");
             }
           } catch (verificationError) {
             console.error("Error in payment verification:", verificationError);
-            toast.error("Error verifying payment. Please try again later.");
+            const adaptedError: ResType = {
+              error: {
+                status: 500,
+                data: {
+                  success: false,
+                  message: "Error verifying payment. Please try again later.",
+                },
+              } as FetchBaseQueryError,
+            };
+
+            responseToast(adaptedError, null, "");
           }
 
           setIsProcessing(false);

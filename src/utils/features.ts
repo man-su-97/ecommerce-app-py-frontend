@@ -5,7 +5,7 @@ import { NavigateFunction } from "react-router-dom";
 import toast from "react-hot-toast";
 import moment from "moment";
 
-type ResType =
+export type ResType =
   | {
       data: MessageResponse;
     }

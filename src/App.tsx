@@ -5,6 +5,7 @@ import HomeLayout from "./layout/HomeLayout";
 import Header from "./pages/Header";
 import Navbar from "./pages/Navbar";
 import Loader, { LoaderLayout } from "./components/Loader";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 import { SignInSide, SignUp } from "./pages/Login";
 import { Toaster } from "react-hot-toast";
@@ -109,6 +110,14 @@ function App() {
               element={
                 <ProtectedRoute isAuthenticated={!user}>
                   <SignUp />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <ProtectedRoute isAuthenticated={!user}>
+                  <ForgotPassword />
                 </ProtectedRoute>
               }
             />

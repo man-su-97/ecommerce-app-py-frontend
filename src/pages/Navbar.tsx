@@ -7,9 +7,11 @@ import { User } from "../types/types";
 import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 import { auth } from "../firebase";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/navbar.css";
+import { useDispatch } from "react-redux";
+import { resetCart } from "../redux/reducers/cartReducer";
+import { FaUserCircle } from "react-icons/fa";
 
 interface PropsType {
   user: User | null;
@@ -17,18 +19,38 @@ interface PropsType {
 
 function Navbar({ user }: PropsType) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const logoutHandler = async () => {
     try {
       await signOut(auth);
       toast.success("Sign Out Successfully");
+      dispatch(resetCart());
       setIsOpen(false);
     } catch (error) {
       toast.error("Sign Out Fail");
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dialogRef.current &&
+        !dialogRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="flex items-center justify-around h-38 relatve max-w-full ">
+    <div className="flex items-center justify-around h-38 relative max-w-full">
       <div className="flex relative space-x-8">
         <Link to={"/"}>
           <button className=""> HOME</button>
@@ -48,7 +70,7 @@ function Navbar({ user }: PropsType) {
           <img src={logo} alt="logo" />
         </Link>
       </div>
-      <div className=" flex space-x-8 relative">
+      <div className=" flex items-center space-x-8 relative">
         <div>
           <Paper
             component="form"
@@ -64,6 +86,7 @@ function Navbar({ user }: PropsType) {
               placeholder="Search"
               inputProps={{ "aria-label": "search" }}
             />
+
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
@@ -72,10 +95,10 @@ function Navbar({ user }: PropsType) {
 
         {user?._id ? (
           <nav className="header">
-            <button onClick={() => setIsOpen((prev: any) => !prev)}>
-              <FaUser />
+            <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
+              <FaUserCircle size={25} />
             </button>
-            <dialog open={isOpen} className="dialog">
+            <dialog ref={dialogRef} open={isOpen} className="dialog">
               <div>
                 {user.role === "admin" && (
                   <Link onClick={() => setIsOpen(false)} to="/admin/dashboard">
@@ -85,15 +108,20 @@ function Navbar({ user }: PropsType) {
                 <Link onClick={() => setIsOpen(false)} to="/orders">
                   Orders
                 </Link>
-                <button onClick={logoutHandler}>
-                  <FaSignOutAlt />
+                <button
+                  onClick={logoutHandler}
+                  className="bg-red-600 text-white p-1 rounded"
+                >
+                  Sign Out
                 </button>
               </div>
             </dialog>
           </nav>
         ) : (
           <Link to={"/login"}>
-            <FaSignInAlt />
+            <div className="flex items-center justify-center gap-2">
+              <FaUserCircle size={25} /> Login
+            </div>
           </Link>
         )}
         <Link to={"/cart"}>

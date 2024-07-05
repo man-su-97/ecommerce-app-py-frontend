@@ -17,7 +17,6 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@reduxjs/toolkit": "^2.2.5",
-    "@types/firebase": "^3.2.1",
     "6pp": "^1.2.16",
     "axios": "^1.7.2",
     "chartjs": "^0.3.24",
@@ -40,6 +39,7 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
+    "@types/firebase": "^3.2.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-table": "^7.7.20",

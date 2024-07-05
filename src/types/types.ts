@@ -1,11 +1,11 @@
 export type User = {
-  mobile: string;
+  mobile?: string;
   name: string;
   email: string;
-  photo: string;
-  gender: string;
+  photo?: string;
+  gender?: string;
   role: string;
-  dob: string;
+  dob?: string;
   _id: string;
 };
 
