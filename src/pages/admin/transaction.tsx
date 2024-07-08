@@ -57,12 +57,12 @@ const Transaction = () => {
     const err = error as CustomError;
     toast.error(err.data.message);
   }
-
+  console.log("data from transaction -", data);
   useEffect(() => {
     if (data)
       setRows(
         data.orders.map((i) => ({
-          user: i.user.name,
+          user: i.user?.name ?? "Unknown User",
           amount: i.total,
           discount: i.discount,
           quantity: i.orderItems.length,

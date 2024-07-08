@@ -47,7 +47,7 @@ function TableHOC<T extends object>(
         <table className="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
+              <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => {
                   const { key, ...rest } = column.getHeaderProps(
                     column.getSortByToggleProps()
@@ -76,7 +76,7 @@ function TableHOC<T extends object>(
               prepareRow(row);
 
               return (
-                <tr key={row.id} {...row.getRowProps()}>
+                <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     const { key, ...rest } = cell.getCellProps();
                     return (

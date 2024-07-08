@@ -8,13 +8,14 @@ import {
 import { auth } from "../firebase";
 import { getUser, useLoginMutation } from "../redux/api/userAPI";
 import { useDispatch } from "react-redux";
-import { userExist } from "../redux/reducers/userReducer";
+import { userExist, userNotExist } from "../redux/reducers/userReducer";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import signInImage from "../assets/Adult toy store.png";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSignUpMutation } from "../redux/api/userAPI";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { MessageResponse } from "../types/api-types";
 
 export function SignInSide() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export function SignInSide() {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
-  const handleEmailPasswordSignIn = async (event: React.FocusEvent) => {
+  const handleEmailPasswordSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -34,23 +35,31 @@ export function SignInSide() {
       console.log("Signed in user:", user);
 
       const res = await login({
-        email: user.email || "",
-        name: user.displayName || "",
-        photo: user.photoURL || "",
+        email: user.email!,
+        name: user.displayName!,
+        photo: user.photoURL!,
         gender: "",
         dob: "",
         _id: user.uid,
         role: "user",
       });
 
-      if ("data" in res) {
+      if ("data" in res && res.data) {
         toast.success(res.data.message);
         const data = await getUser(user.uid);
-        dispatch(userExist(data.user));
-      } else {
-        const error = res.error as ErrorResponse;
-        const message = error.data?.message || "Unknown error occured";
+        if (data?.user) {
+          dispatch(userExist(data.user));
+        } else {
+          dispatch(userNotExist());
+        }
+      } else if (res.error) {
+        const error = res.error as FetchBaseQueryError;
+        const message =
+          (error.data as MessageResponse)?.message || "Unknown error occurred";
         toast.error(message);
+        dispatch(userNotExist());
+      } else {
+        toast.error("Unexpected error occurred");
       }
     } catch (error: unknown) {
       const err = error as Error;
@@ -235,14 +244,20 @@ export function SignUp() {
         _id: user.uid,
       });
 
-      if ("data" in res) {
+      if (res && res.data) {
         toast.success(res.data.message);
         const data = await getUser(user.uid);
         dispatch(userExist(data.user));
       } else {
-        const error = res.error;
-        toast.error(error.data.message);
+        const error = res as FetchBaseQueryError;
+        const message =
+          (error.data as { message?: string })?.message ||
+          "Unknown error occurred";
+
+        toast.error(message);
       }
+
+      console.log(user);
     } catch (error) {
       toast.error("Sign Up Failed");
     }

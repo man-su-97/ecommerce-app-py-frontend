@@ -25,6 +25,7 @@ export interface SignUpRequest {
   email: string;
   password: string;
   mobile?: string;
+  _id?: string;
 }
 
 export type MessageResponse = {
@@ -34,7 +35,6 @@ export type MessageResponse = {
 
 export type AllUsersResponse = {
   success: boolean;
-  users: User[];
   allUsers: User[];
 };
 

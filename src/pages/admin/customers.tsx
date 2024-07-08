@@ -19,9 +19,9 @@ interface DataType {
   avatar: ReactElement;
   name: string;
   email: string;
-  gender: string;
+  gender?: string;
   role: string;
-  mobile: string;
+  mobile?: string;
   action: ReactElement;
 }
 
@@ -61,14 +61,14 @@ const columns: Column<DataType>[] = [
 const Customers = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, data, isError, error } = useAllUsersQuery(user?._id ?? "");
+  const { isLoading, data, isError, error } = useAllUsersQuery(user?._id!);
 
   const [rows, setRows] = useState<DataType[]>([]);
 
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (userId: string) => {
-    const res = await deleteUser({ userId, adminUserId: user?._id ?? "" });
+    const res = await deleteUser({ userId, adminUserId: user?._id! });
     responseToast(res, null, "");
   };
 
@@ -76,28 +76,29 @@ const Customers = () => {
     const err = error as CustomError;
     toast.error(err.data.message);
   }
-  console.log("from customer -", user);
+  console.log("data from customer -", data);
+
   useEffect(() => {
-    if (data && data.allUsers)
+    if (data)
       setRows(
-        data.allUsers.map((user) => ({
+        data.allUsers.map((i) => ({
           avatar: (
             <img
               style={{
                 borderRadius: "50%",
               }}
-              src={user.photo}
-              alt={user.name}
+              src={i.photo}
+              alt={i.name}
             />
           ),
-          name: user.name,
-          email: user.email,
-          mobile: user.mobile,
-          gender: user.gender,
-          role: user.role,
+          name: i.name,
+          email: i.email,
+          mobile: i.mobile,
+          gender: i.gender,
+          role: i.role,
 
           action: (
-            <button onClick={() => deleteHandler(user._id)}>
+            <button onClick={() => deleteHandler(i._id)}>
               <FaTrash />
             </button>
           ),
