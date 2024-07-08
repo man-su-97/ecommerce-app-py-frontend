@@ -1,7 +1,7 @@
 import banner from "../assets/new_banner.jpeg";
-import storyimg1 from "../assets/home-img-1.jpeg";
-import storyimg2 from "../assets/hompage_image-2.jpeg";
-import footerImg from "../assets/bottom-img.jpeg";
+import sex_toys_for_women from "../assets/sex toys for women.jpg";
+import adult_toys from "../assets/adult toys.png";
+import sex_toys_for_lgbtq from "../assets/sex toys for lgbtq.png";
 import ProductSlider from "../pages/Slider";
 import { Link } from "react-router-dom";
 
@@ -46,7 +46,7 @@ function HomeLayout() {
         </div>
 
         <img
-          src={storyimg1}
+          src={sex_toys_for_women}
           alt="story-img-1"
           className="h-auto w-full lg:w-1/2 lg:h-2/3"
         />
@@ -57,7 +57,7 @@ function HomeLayout() {
       <div className="px-10 lg:px-40 flex flex-col lg:flex-row w-full h-full">
         <div className="w-full lg:w-2/5 h-full pl-0 lg:pl-20 pt-10">
           <img
-            src={storyimg2}
+            src={adult_toys}
             alt="story-img-2"
             className="h-auto w-full lg:w-auto"
           />
@@ -94,7 +94,7 @@ function HomeLayout() {
           journey, because your pleasure is our priority.
         </p>
         <img
-          src={footerImg}
+          src={sex_toys_for_lgbtq}
           className="w-full lg:w-[55rem] h-auto object-cover object-center"
           alt="footerImage"
         />
