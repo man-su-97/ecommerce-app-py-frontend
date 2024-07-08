@@ -41,7 +41,7 @@ function HomeLayout() {
             oh-so-satisfying!.
           </p>
           <button className="bg-[#DCB4BC] text-white text-xs rounded-lg px-4 py-2 mt-10">
-            SHOP NOW
+            <Link to={"/product-listing"}>SHOP NOW</Link>
           </button>
         </div>
 
