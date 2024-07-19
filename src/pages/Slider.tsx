@@ -52,9 +52,9 @@ const ProductSlider = () => {
   console.log("slider- ", latestProducts);
 
   return (
-    <div className="text-center relative">
-      <h1 className="text-5xl font-light mb-36">MOST POPULAR</h1>
-      <div className="relative px-20">
+    <div className="text-center ">
+      <h1 className="text-5xl font-light pb-36">MOST POPULAR</h1>
+      <div className="relative px-20 h-80">
         {latestProducts && latestProducts.products && (
           <Swiper
             onSwiper={(swiper) => {

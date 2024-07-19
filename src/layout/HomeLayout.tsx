@@ -4,11 +4,12 @@ import adult_toys from "../assets/adult toys.png";
 import sex_toys_for_lgbtq from "../assets/sex toys for lgbtq.png";
 import ProductSlider from "../pages/Slider";
 import { Link } from "react-router-dom";
+import Footer from "../pages/footer-section";
 
 function HomeLayout() {
   return (
-    <div className="max-w-full overflow-x-hidden">
-      <section className="w-screen md:max-h-[736px]  relative overflow-hidden">
+    <div className="w-full h-full overflow-x-hidden">
+      <section className="w-full md:max-h-[736px]  relative overflow-hidden">
         <img
           src={bedroom_accessories}
           alt="banner"
@@ -26,9 +27,9 @@ function HomeLayout() {
         <h1 className="text-xl py-10 md:text-5xl md:my-20">WHY US ?</h1>
       </div>
 
-      <div className="md:px-10 lg:px-40 flex flex-col-reverse lg:flex-row max-w-full">
-        <div className="px-6 xl:pl-56 xl:pr-40 py-5 flex-1">
-          <p className=" text-center md:text-left overflow-hidden xl:leading-loose text-[17px]">
+      <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60 ">
+        <div className="w-full md:w-1/2 p-5 md:pl-20 ">
+          <p className=" text-center md:text-left overflow-hidden leading-loose text-[17px]">
             We are the first Indian brand specializing in personalized women and
             LGBTQI+ intimate products, dedicated to revolutionizing your
             intimate experience. Our large variety of products including
@@ -46,27 +47,28 @@ function HomeLayout() {
             </Link>
           </button>
         </div>
-
-        <img
-          src={sex_toys_for_women}
-          alt="story-img-1"
-          className="h-auto w-full lg:w-1/2 lg:h-2/3"
-        />
+        <div className="w-full md:w-1/2 h-80 ">
+          <img
+            src={sex_toys_for_women}
+            alt="story-img-1"
+            className="md:min-h-[590px] lg:min-h-auto md:min-w-[490px] lg:min-w-auto"
+          />
+        </div>
       </div>
-      <div className="bg-[#DCB4BC] pt-48 my-40 pb-20 w-screen">
+      <div className="bg-[#DCB4BC] py-40 lg:py-52 lg:mt-20 my-40 w-screen h-auto">
         <ProductSlider />
       </div>
-      <div className="px-10 md:ml-20 lg:ml-44 lg:px-40 flex flex-col lg:flex-row w-full h-full items-center">
-        <div className="w-full lg:w-2/5 h-full pl-0 lg:pl-20 lg:mt-[-80px] ">
+      <div className="px-10   xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center">
+        <div className="w-full lg:w-2/5 h-full  lg:mt-[-80px] ">
           <img
             src={adult_toys}
             alt="story-img-2"
-            className="h-auto w-full lg:w-auto"
+            className="md:min-h-[576px] md:min-w-[455px]"
           />
         </div>
 
         <div className="w-full lg:w-3/5 h-full">
-          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10 lg:ml-20 mt-6 lg:mt-0">
+          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10 lg:ml-10 mt-6 lg:mt-0">
             <div>
               <h2 className="text-xl px-20 md:px-0 pb-4 md:text-[39px]">
                 BEYOND PERFECT
@@ -103,44 +105,9 @@ function HomeLayout() {
           alt="footerImage"
         />
       </div>
-      <div className="flex flex-col md:flex-row bg-[#DCB4BC] justify-evenly items-center mt-20 px-4 lg:px-0">
-        <div className="flex flex-col py-16">
-          <div className="py-10 flex flex-col gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl pb-5">SHOP</h1>
-              <p className="text-[14px]">WOMEN</p>
-              <p className="text-[14px]">LGBTQ+</p>
-            </div>
-          </div>
-          <div className="py-10 flex flex-col gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl pb-5">HELP</h1>
-              <p className="text-[14px]">TERMS & CONDITIONS</p>
-              <p className="text-[14px]">PRIVACY POLICY</p>
-              <p className="text-[14px]">SHIPPING & RETURNS</p>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col-reverse md:flex-col">
-          <div className="py-10 flex flex-col items-center  gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl">PLEASUREYOURSELF</h1>
-              <p className="text-[14px]">BLOG</p>
-              <p className="text-[14px]">CONTACT US</p>
-              <Link to={"/faq-section"}>
-                <button className="text-[14px]">FAQ</button>
-              </Link>
-            </div>
-          </div>
-          <div className=" hidden md:block py-10">
-            <div className="py-10 flex flex-col gap-3">
-              <h1 className="text-3xl">NEWSLETTER SIGN UP</h1>
-              <p>Recieve our latest updates</p>
-              <input placeholder="enter your email" />
-              <button className="bg-black text-white py-2">SUBMIT</button>
-            </div>
-          </div>
-        </div>
+
+      <div>
+        <Footer />
       </div>
     </div>
   );
