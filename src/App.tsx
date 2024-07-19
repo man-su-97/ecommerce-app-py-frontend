@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import HomeLayout from "./layout/HomeLayout";
 import Header from "./pages/Header";
-import Navbar from "./pages/Navbar";
+import Navbar2 from "./pages/Navbar2";
 import Loader, { LoaderLayout } from "./components/Loader";
 import { ForgotPassword } from "./pages/ForgotPassword";
 
@@ -87,7 +87,7 @@ function App() {
     <>
       <Router>
         <Header />
-        <Navbar user={user} />
+        <Navbar2 user={user} />
         <Suspense fallback={<LoaderLayout />}>
           <Routes>
             <Route path="/product/:id" element={<ProductDetails />} />

@@ -50,13 +50,13 @@ export const ProductCard = ({
   };
 
   return (
-    <div key={productId} className="group relative">
+    <div key={productId}>
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
         <Link to={`/product/${productId}`}>
           <img
             src={transformImage(photos?.[0]?.url, 400)}
             alt={name}
-            className="h-full w-full object-cover object-center group-hover:opacity-75"
+            className="h-[483px] w-[362px] object-cover object-center group-hover:opacity-75"
           />
         </Link>
       </div>
