@@ -10,6 +10,7 @@ import { CustomError } from "../types/api-types";
 import Loader from "../components/Loader";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/reducers/cartReducer";
+import "./styles.css";
 
 function ProductListing() {
   const {
@@ -24,6 +25,7 @@ function ProductListing() {
   const [maxPrice, setMaxPrice] = useState(100000);
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
+  const [catog, setCatog] = useState("All Products");
 
   const {
     isLoading: productLoading,
@@ -58,108 +60,128 @@ function ProductListing() {
     toast.success("Added to cart");
   };
 
+  console.log("searchd==", searchedData);
+
+  const capitalizeWords = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCategory(selectedCategory);
+    setCatog(capitalizeWords(selectedCategory) || "All Products");
+  };
+
   return (
-    <div className="flex flex-row items-start justify-stretch p-8 min-h-[calc(100vh-6.5vh)]">
-      <aside className="min-w-[20rem] min-h-screen shadow-md shadow-[#0000003f] p-8 flex flex-col items-start justify-stretch space-y-2">
-        <h2 className="text-xl font-bold">Filters</h2>
-        <div>
-          <h4 className="font-semibold">Sort</h4>
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            className="w-full p-2 bg-white border border-gray-300 rounded-lg mt-2"
-          >
-            <option value="">None</option>
-            <option value="asc">Price (Low to High)</option>
-            <option value="dsc">Price (High to Low)</option>
-          </select>
-        </div>
+    <div>
+      <div className="flex mt-10  ml-7 md:ml-12">
+        <h2 className="mr-2">Home</h2>
+        <span>&gt;</span>
+        <h2 className="ml-2">{catog}</h2>
+      </div>
 
-        <div>
-          <h4 className="font-semibold">Max Price: {maxPrice || ""}</h4>
-          <input
-            type="range"
-            min={100}
-            max={100000}
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(Number(e.target.value))}
-            className="w-full"
-          />
-        </div>
+      <div className="flex flex-col lg:flex-row  items-start justify-stretch p-5 md:p-8 min-h-[calc(100vh-12.5vh)] md:min-h-[calc(100vh-6.5vh)]">
+        <aside className="hidden md:block min-w-full md:min-w-[16rem] h-auto lg:min-h-screen p-10 md:p-5 flex flex-col items-start justify-stretch space-y-2">
+          <h2 className="text-xl font-bold">Browse by</h2>
+          <hr className="border-t-1 py-2 border-black w-52" />
 
-        <div>
-          <h4 className="font-semibold">Category</h4>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-full p-2 bg-white border border-gray-300 rounded-lg mt-2"
-          >
-            <option value="">All</option>
-            {!loadingCategories &&
-              categoriesResponse?.categories.map((i) => (
-                <option key={i} value={i}>
-                  {i.toUpperCase()}
-                </option>
-              ))}
-          </select>
-        </div>
-      </aside>
-      <main className="flex-1 px-8">
-        <h1 className="text-2xl font-bold">Products</h1>
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-1/2 p-2 mt-4 mb-4 border border-gray-300 rounded-lg"
-        />
-
-        {productLoading ? (
-          <Loader />
-        ) : (
-          <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-              <h2 className="sr-only">Products</h2>
-
-              <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
-                {searchedData?.products.map((product) => (
-                  <ProductCard
-                    key={product._id}
-                    productId={product._id}
-                    name={product.name}
-                    price={product.price}
-                    stock={product.stock}
-                    handler={addToCartHandler}
-                    photos={product.photos}
-                  />
+          <div>
+            <select
+              value={category}
+              onChange={handleCategoryChange}
+              className="w-full  bg-white border border-gray-300 rounded-lg  focus:ring-0 border-none"
+            >
+              <option value="">All Products</option>
+              {!loadingCategories &&
+                categoriesResponse?.categories.map((i) => (
+                  <option key={i} value={i}>
+                    {i.toUpperCase()}
+                  </option>
                 ))}
-              </div>
+            </select>
+          </div>
+        </aside>
+        <main className="flex-1 px-2">
+          <h1 className="text-2xl font-bold mt-5">All Products</h1>
+          <div className="">
+            <p className="mt-2 mb-10 md:pr-60">
+              This is your category description. It’s a great place to tell
+              customers what this category is about, connect with your audience
+              and draw attention to your products.
+            </p>
+          </div>
+
+          <div className="my-10 flex items-center justify-between">
+            <div>
+              <h4 className="text-sm">
+                {searchedData?.products.length} products
+              </h4>
+            </div>
+            <div className="flex justify-end items-center">
+              <h4 className="text-sm">Sort By:</h4>
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+                className="custom-select bg-white border-none focus:ring-0 text-sm"
+              >
+                <option value="">Recomended</option>
+                <option value="">Newest</option>
+                <option value="asc">Price (Low to High)</option>
+                <option value="dsc">Price (High to Low)</option>
+                <option value="asc">Name A-Z</option>
+                <option value="dsc">Name Z-A</option>
+              </select>
             </div>
           </div>
-        )}
 
-        {searchedData && searchedData.totalPage >= 1 && (
-          <article className="flex justify-center items-center space-x-4 mt-8">
-            <button
-              disabled={!isPrevPage}
-              onClick={() => setPage((prev) => prev - 1)}
-              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg disabled:opacity-50 "
-            >
-              Prev
-            </button>
-            <span>
-              {page} of {searchedData.totalPage}
-            </span>
-            <button
-              disabled={!isNextPage}
-              onClick={() => setPage((prev) => prev + 1)}
-              className="px-4 py-2 bg-orange-300  text-gray-700 rounded-lg disabled:opacity-50 "
-            >
-              Next
-            </button>
-          </article>
-        )}
-      </main>
+          {productLoading ? (
+            <Loader />
+          ) : (
+            <div className="bg-white">
+              <div className="mx-auto max-w-2xl py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
+                <div className="grid gird-cols-1 gap-y-16 md:grid-cols-3 md:gap-x-5 md:gap-y-12">
+                  {searchedData?.products.map((product) => (
+                    <ProductCard
+                      key={product._id}
+                      productId={product._id}
+                      name={product.name}
+                      price={product.price}
+                      stock={product.stock}
+                      handler={addToCartHandler}
+                      photos={product.photos}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {searchedData && searchedData.totalPage >= 1 && (
+            <article className="flex justify-center items-center space-x-4 mt-8">
+              <button
+                disabled={!isPrevPage}
+                onClick={() => setPage((prev) => prev - 1)}
+                className="px-3 py-1 bg-[#5E5E4A]  text-white rounded text-sm disabled:opacity-50"
+              >
+                Prev
+              </button>
+              <span>
+                {page} of {searchedData.totalPage}
+              </span>
+              <button
+                disabled={!isNextPage}
+                onClick={() => setPage((prev) => prev + 1)}
+                className="px-3 py-1 bg-[#5E5E4A]  text-white rounded text-sm disabled:opacity-50 "
+              >
+                Next
+              </button>
+            </article>
+          )}
+        </main>
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ button {
 
 $color1: white;
 $color2: rgb(46, 46, 46);
-$color3: rgb(0, 104, 136);
+$color3: rgb(94, 94, 74);
 
 .red {
   color: red;
@@ -42,12 +42,8 @@ $color3: rgb(0, 104, 136);
 
 @import "admin-styles/mixin";
 @import "home";
-@import "cart";
 @import "shipping";
-@import "login";
 @import "search";
-@import "product-details";
-@import "footer";
 @import "admin-styles/dashboard";
 @import "admin-styles/products";
 @import "admin-styles/chart";
@@ -72,39 +68,72 @@ $color3: rgb(0, 104, 136);
   text-align: center;
 }
 
+// .header {
+//   @include flex(column, flex-end, stretch, 1.2rem);
+//   padding: 1rem;
+//   a {
+//     color: $color2;
+//     letter-spacing: 2px;
+//     font-size: 1rem;
+
+//     &:hover {
+//       color: $color3;
+//     }
+//   }
+
+//   dialog {
+//     border: 1px solid #ccc;
+//     border-radius: 5px;
+//     padding: 10px;
+//     width: 100px;
+//     position: absolute;
+//     left: calc(100% - 100px);
+//     top: 80%;
+//     left: 62%;
+//     z-index: 10;
+//     > div {
+//       @include flex(column, flex-start, center, 0.25rem);
+//     }
+//   }
+// }
 .header {
-  @include flex(row, flex-end, stretch, 1.2rem);
+  @include flex(column, flex-end, stretch, 1.2rem);
   padding: 1rem;
+
   a {
     color: $color2;
     letter-spacing: 2px;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     &:hover {
       color: $color3;
     }
   }
 
-  // button {
-  //   border: none;
-  //   font-size: 1.2rem;
-  //   cursor: pointer;
-  //   background-color: transparent;
-  //   &:hover {
-  //     color: $color3;
-  //   }
-  // }
-
   dialog {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    width: 100px;
+    width: 100px; /* Adjust width as needed */
     position: absolute;
-    left: calc(100% - 100px);
-    top: 8%;
+    top: 70%; /* Position below the header */
+    left: 62%;
+    transform: translateY(10px); /* Space from the top */
+    z-index: 1000; /* Ensure it's on top of other content */
+    background-color: white; /* Set background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    pointer-events: auto; /* Ensure clicks are registered */
+    cursor: pointer; /* Show pointer cursor */
+
+    /* Ensure content inside dialog is properly spaced */
     > div {
       @include flex(column, flex-start, center, 0.25rem);
+    }
+
+    /* Optional: Add a hover effect for better interactivity */
+    &:hover {
+      background-color: #f1f1f1;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
   }
 }

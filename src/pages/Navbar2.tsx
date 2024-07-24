@@ -7,17 +7,47 @@ import { User } from "../types/types";
 import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 import { auth } from "../firebase";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { resetCart } from "../redux/reducers/cartReducer";
 import { FaUserCircle } from "react-icons/fa";
 import "../styles/navbar.css";
+import { useSearchProductsQuery } from "../redux/api/productAPI";
+import { CustomError } from "../types/api-types";
+import { useSelector } from "react-redux";
+import { RootState } from "@reduxjs/toolkit/query";
 
 interface PropsType {
   user: User | null;
 }
 
 const Navbar2 = ({ user }: PropsType) => {
+  const [search, setSearch] = useState("");
+  const sort = "";
+  const maxPrice = 100000;
+  const category = "";
+  const page = 1;
+
+  const { cartItems } = useSelector((state: RootState) => state.cartReducer);
+
+  const {
+    isLoading: productLoading,
+    data: searchedData,
+    isError: productIsError,
+    error: productError,
+  } = useSearchProductsQuery({
+    search,
+    sort,
+    category,
+    page,
+    price: maxPrice,
+  });
+
+  if (productIsError) {
+    const err = productError as CustomError;
+    toast.error(err.data.message);
+  }
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
@@ -51,11 +81,13 @@ const Navbar2 = ({ user }: PropsType) => {
   }, []);
 
   const handleLinkClick = () => {
+    console.log("button clicked ---");
     setNavOpen(false);
+    setIsOpen(false);
   };
 
   const MenuLinks = () => (
-    <>
+    <div className="flex flex-col items-start md:flex-row relative gap-5 md:gap-1 md:space-x-8 md:ml-8 ">
       <Link to="/" onClick={handleLinkClick}>
         HOME
       </Link>
@@ -68,33 +100,7 @@ const Navbar2 = ({ user }: PropsType) => {
       <Link to="/contact-listing" onClick={handleLinkClick}>
         CONTACT
       </Link>
-    </>
-  );
-
-  const UserMenu = () => (
-    <nav className="header">
-      <button onClick={() => setIsOpen((prev) => !prev)}>
-        <FaUserCircle size={25} />
-      </button>
-      <dialog ref={dialogRef} open={isOpen} className="dialog">
-        <div>
-          {user?.role === "admin" && (
-            <Link onClick={handleLinkClick} to="/admin/dashboard">
-              Admin
-            </Link>
-          )}
-          <Link onClick={handleLinkClick} to="/orders">
-            Orders
-          </Link>
-          <button
-            onClick={logoutHandler}
-            className="bg-red-600 text-white p-1 rounded"
-          >
-            Sign Out
-          </button>
-        </div>
-      </dialog>
-    </nav>
+    </div>
   );
 
   const SearchBar = () => (
@@ -104,9 +110,15 @@ const Navbar2 = ({ user }: PropsType) => {
         className="bg-transparent p-2 w-full border-none focus:ring-0"
         type="text"
         placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
     </div>
   );
+
+  const productCount = useCallback(() => {
+    return cartItems.reduce((total, product) => total + product.quantity, 0);
+  }, [cartItems]);
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-1 md:p-4 shadow-sm">
@@ -115,30 +127,58 @@ const Navbar2 = ({ user }: PropsType) => {
       </div>
       <div className="ml-36 md:ml-0 size-28 md:size-36">
         <Link to="/">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" className="" />
         </Link>
       </div>
       <div className="hidden md:flex md:items-center md:space-x-8 md:relative">
         <SearchBar />
         {user?._id ? (
-          <UserMenu />
+          <nav className="header">
+            <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
+              <FaUserCircle size={25} />
+            </button>
+            <dialog ref={dialogRef} open={isOpen} className="dialog">
+              <div>
+                {user.role === "admin" && (
+                  <Link to="/admin/dashboard" onClick={handleLinkClick}>
+                    Admin
+                  </Link>
+                )}
+                <Link to="/orders" onClick={handleLinkClick}>
+                  Orders
+                </Link>
+                <button
+                  onClick={logoutHandler}
+                  className="bg-red-600 text-white p-1 rounded"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </dialog>
+          </nav>
         ) : (
-          <Link to="/login">
+          <Link to="/login" onClick={handleLinkClick}>
             <div className="flex items-center justify-center gap-2">
               <FaUserCircle size={25} /> Login
             </div>
           </Link>
         )}
         <Link to="/cart">
-          <button className="text-[#5E5E4A] md:flex items-center py-2 px-5">
-            <GiShoppingBag size={30} className="mr-2" />
+          <button className="text-[#5E5E4A] md:flex items-center py-2 px-5 relative">
+            <GiShoppingBag size={32} className="mr-2" />
+            <span className="absolute text-white text-xs top-5 left-8">
+              {productCount()}
+            </span>
           </button>
         </Link>
       </div>
       <div className="flex items-center md:hidden">
         <Link to="/cart">
-          <button className="text-[#5E5E4A] md:flex items-center py-2 px-5">
+          <button className="text-[#5E5E4A] md:flex items-center py-2 px-5 relative">
             <GiShoppingBag size={30} className="mr-2" />
+            <span className="absolute text-white text-xs top-5 left-8">
+              {productCount()}
+            </span>
           </button>
         </Link>
         <div
@@ -169,7 +209,29 @@ const Navbar2 = ({ user }: PropsType) => {
           <ul className="flex flex-col p-4 text-gray-800">
             <li className="text-xl flex flex-col items-start mt-12 space-y-5 cursor-pointer w-[50%] rounded-full mx-auto p-2 hover:text-white">
               {user?._id ? (
-                <UserMenu />
+                <nav className="header">
+                  <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
+                    <FaUserCircle size={35} />
+                  </button>
+                  <dialog ref={dialogRef} open={isOpen} className="dialog">
+                    <div>
+                      {user.role === "admin" && (
+                        <Link to="/admin/dashboard" onClick={handleLinkClick}>
+                          Admin
+                        </Link>
+                      )}
+                      <Link to="/orders" onClick={handleLinkClick}>
+                        Orders
+                      </Link>
+                      <button
+                        onClick={logoutHandler}
+                        className="bg-red-600 text-white p-1 rounded"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </dialog>
+                </nav>
               ) : (
                 <Link to="/login" onClick={handleLinkClick}>
                   <div className="flex items-center justify-center gap-2">
@@ -188,3 +250,37 @@ const Navbar2 = ({ user }: PropsType) => {
 };
 
 export default Navbar2;
+
+// {
+//   user?._id ? (
+//     <nav className="header">
+//       <button onClick={() => setIsOpen((prev: boolean) => !prev)}>
+//         <FaUserCircle size={25} />
+//       </button>
+//       <dialog ref={dialogRef} open={isOpen} className="dialog">
+//         <div>
+//           {user.role === "admin" && (
+//             <Link onClick={() => setIsOpen(false)} to="/admin/dashboard">
+//               Admin
+//             </Link>
+//           )}
+//           <Link onClick={() => setIsOpen(false)} to="/orders">
+//             Orders
+//           </Link>
+//           <button
+//             onClick={logoutHandler}
+//             className="bg-red-600 text-white p-1 rounded"
+//           >
+//             Sign Out
+//           </button>
+//         </div>
+//       </dialog>
+//     </nav>
+//   ) : (
+//     <Link to={"/login"}>
+//       <div className="flex items-center justify-center gap-2">
+//         <FaUserCircle size={25} /> Login
+//       </div>
+//     </Link>
+//   );
+// }

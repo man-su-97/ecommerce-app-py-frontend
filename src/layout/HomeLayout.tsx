@@ -15,12 +15,6 @@ function HomeLayout() {
           alt="banner"
           className="w-full object-cover object-bottom"
         />
-        {/* <div className="absolute inset-24 flex items-center  top-1/6 ">
-          <h1 className="text-white text-5xl md:text-7xl font-bold">
-            Your Pleasure, Perfectly
-            <br /> Priced.
-          </h1>
-        </div> */}
       </section>
 
       <div className="flex justify-center max-w-full">
@@ -58,7 +52,7 @@ function HomeLayout() {
       <div className="bg-[#DCB4BC] py-40 lg:py-52 lg:mt-20 my-40 w-screen h-auto">
         <ProductSlider />
       </div>
-      <div className="px-10   xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center">
+      <div className="px-10   xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center md:space-x-10">
         <div className="w-full lg:w-2/5 h-full  lg:mt-[-80px] ">
           <img
             src={adult_toys}
@@ -68,7 +62,7 @@ function HomeLayout() {
         </div>
 
         <div className="w-full lg:w-3/5 h-full">
-          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10 lg:ml-10 mt-6 lg:mt-0">
+          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10  lg:ml-10 mt-6 lg:mt-0">
             <div>
               <h2 className="text-xl px-20 md:px-0 pb-4 md:text-[39px]">
                 BEYOND PERFECT

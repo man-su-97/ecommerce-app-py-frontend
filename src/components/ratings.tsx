@@ -7,7 +7,7 @@ const RatingsComponent = ({ value = 0 }: { value: number }) => {
     IconOutline: <FaRegStar />,
     value,
     styles: {
-      fontSize: "1.75rem",
+      fontSize: "1rem",
       color: "coral",
       justifyContent: "flex-start",
       gap: "1px",

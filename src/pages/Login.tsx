@@ -16,6 +16,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSignUpMutation } from "../redux/api/userAPI";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { MessageResponse } from "../types/api-types";
+import logo from "../assets/py.png";
 
 export function SignInSide() {
   const [email, setEmail] = useState("");
@@ -112,12 +113,15 @@ export function SignInSide() {
       <div className="flex-1 flex justify-center items-center">
         <div className="max-w-md w-full space-y-8">
           <div className="flex flex-col items-center">
-            <FcGoogle className="text-6xl mb-4" />
+            <img src={logo} className="w-40 mb-10" />
             <h2 className="text-3xl font-extrabold text-gray-900">Sign in</h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={handleEmailPasswordSignIn}>
+          <form
+            className="m-2 space-y-5 md:mt-8 md:space-y-6"
+            onSubmit={handleEmailPasswordSignIn}
+          >
             <input type="hidden" name="remember" defaultValue="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="rounded-md shadow-sm space-y-2">
               <div>
                 <label htmlFor="email" className="sr-only">
                   Email address

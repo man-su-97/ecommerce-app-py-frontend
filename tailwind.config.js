@@ -13,5 +13,10 @@ export default {
   theme: {
     extend: {},
   },
+  variants: {
+    extend: {
+      backgroundColor: ["checked"],
+    },
+  },
   plugins: [forms, aspectRatio, flowbite],
 };
