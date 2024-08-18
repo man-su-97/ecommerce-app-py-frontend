@@ -51,7 +51,7 @@ const CheckOutForm = () => {
     if (paymentMethod === "COD") {
       // Handle COD order creation
       try {
-        const { data } = await axios.post(
+        await axios.post(
           `${server}/api/v1/order/newWithCOD`,
           {
             shippingInfo,
