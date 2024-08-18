@@ -18,8 +18,9 @@ import CartItemCard from "../components/cart-item";
 import Footer from "../pages/footer-section";
 
 export const Cart2 = () => {
-  const { cartItems, subtotal, tax, total, shippingCharges, discount } =
-    useSelector((state: RootState) => state.cartReducer);
+  const { cartItems, subtotal, total, shippingCharges, discount } = useSelector(
+    (state: RootState) => state.cartReducer
+  );
   const dispatch = useDispatch();
 
   const [couponCode, setCouponCode] = useState<string>("");

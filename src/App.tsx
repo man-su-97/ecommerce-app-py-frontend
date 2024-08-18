@@ -13,9 +13,11 @@ import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { userExist, userNotExist } from "./redux/reducers/userReducer";
 import { getUser } from "./redux/api/userAPI";
-import { Cart } from "./pages/Cart";
 import { Cart2 } from "./pages/Cart2";
 import FaqSection from "./pages/FaqSection";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsCondition from "./pages/Terms&Condition";
 import { onAuthStateChanged } from "firebase/auth";
 import { RootState } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -24,11 +26,21 @@ import Orders from "./pages/orders";
 import Checkout from "./pages/checkout";
 import OrderDetails from "./pages/order-details";
 import NotFound from "./pages/not-found";
+import AgeVerification from "./components/AgeVerfication";
 
 const ProductListing = lazy(() => import("./pages/ProductListing"));
 const BlogListing = lazy(() => import("./pages/BlogListing"));
 const ContactSection = lazy(() => import("./pages/ContactSection"));
 const ProductDetails = lazy(() => import("./pages/product-details"));
+
+const Post1 = lazy(() => import("./pages/Post1"));
+const Post2 = lazy(() => import("./pages/Post2"));
+const Post3 = lazy(() => import("./pages/Post3"));
+const Post4 = lazy(() => import("./pages/Post4"));
+const Post11 = lazy(() => import("./pages/Post11"));
+const Post22 = lazy(() => import("./pages/Post22"));
+const Post33 = lazy(() => import("./pages/Post33"));
+const Post44 = lazy(() => import("./pages/Post44"));
 
 // Admin Routes Importing
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
@@ -87,6 +99,7 @@ function App() {
   return (
     <>
       <Router>
+        <AgeVerification />
         <Header />
         <Navbar2 user={user} />
         <Suspense fallback={<LoaderLayout />}>
@@ -96,7 +109,19 @@ function App() {
             <Route path="/blog-listing" element={<BlogListing />} />
             <Route path="/contact-listing" element={<ContactSection />} />
             <Route path="/faq-section" element={<FaqSection />} />
+            <Route path="/terms-section" element={<TermsCondition />} />
+            <Route path="/privacy-section" element={<PrivacyPolicy />} />
+            <Route path="/shipping-section" element={<ShippingPolicy />} />
+
             <Route path="/cart" element={<Cart2 />} />
+            <Route path="/post1" element={<Post1 />} />
+            <Route path="/post2" element={<Post2 />} />
+            <Route path="/post3" element={<Post3 />} />
+            <Route path="/post4" element={<Post4 />} />
+            <Route path="/post11" element={<Post11 />} />
+            <Route path="/post22" element={<Post22 />} />
+            <Route path="/post33" element={<Post33 />} />
+            <Route path="/post44" element={<Post44 />} />
 
             <Route
               path="/login"

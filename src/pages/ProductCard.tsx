@@ -22,6 +22,7 @@ export const ProductCard = ({
   stock,
   handler,
 }: ProductsProps) => {
+  console.log("pp-", productId, price, name, photos, stock, handler);
   if (
     !productId ||
     !price ||
@@ -44,7 +45,6 @@ export const ProductCard = ({
       stock,
       quantity: 1,
     };
-    console.log("Adding item to cart: ", cartItem);
     const result = handler(cartItem);
     console.log("Handler result: ", result);
   };

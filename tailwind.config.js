@@ -11,7 +11,12 @@ export default {
     "./node_modules/flowbite-react/**/*.js", // Including Flowbite's path directly
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        avenirCF: ["avenirCF", "sans-serif"],
+        arialBlackCF: ["arialBlackCF", "serif"],
+      },
+    },
   },
   variants: {
     extend: {

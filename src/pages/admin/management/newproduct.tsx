@@ -16,6 +16,7 @@ const NewProduct = () => {
   const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState<number>(1000);
   const [stock, setStock] = useState<number>(1);
+
   const [description, setDescription] = useState<string>("");
 
   const [newProduct] = useNewProductMutation();
@@ -37,7 +38,6 @@ const NewProduct = () => {
       formData.set("description", description);
       formData.set("price", price.toString());
       formData.set("stock", stock.toString());
-
       formData.set("category", category);
 
       photos.file.forEach((file) => {

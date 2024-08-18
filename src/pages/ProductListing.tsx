@@ -5,7 +5,7 @@ import {
 } from "../redux/api/productAPI";
 import { CartItem } from "../types/types";
 import { ProductCard } from "./ProductCard";
-import { useState } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { CustomError } from "../types/api-types";
 import Loader from "../components/Loader";
 import { useDispatch } from "react-redux";
@@ -19,10 +19,9 @@ function ProductListing() {
     isError,
     error,
   } = useCategoriesQuery("");
-
-  const [search, setSearch] = useState("");
+  const search = "";
+  const maxPrice = 1000000;
   const [sort, setSort] = useState("");
-  const [maxPrice, setMaxPrice] = useState(100000);
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [catog, setCatog] = useState("All Products");
@@ -41,18 +40,22 @@ function ProductListing() {
   });
 
   const dispatch = useDispatch();
-
   const isPrevPage = page > 1;
   const isNextPage = page < 4;
 
-  if (isError) {
-    const err = error as CustomError;
-    toast.error(err.data.message);
-  }
-  if (productIsError) {
-    const err = productError as CustomError;
-    toast.error(err.data.message);
-  }
+  useEffect(() => {
+    if (isError) {
+      const err = error as CustomError;
+      toast.error(err.data.message);
+    }
+  }, [isError, error]);
+
+  useEffect(() => {
+    if (productIsError) {
+      const err = productError as CustomError;
+      toast.error(err.data.message);
+    }
+  }, [productIsError, productError]);
 
   const addToCartHandler = (cartItem: CartItem) => {
     if (cartItem.stock < 1) return toast.error("Out of Stock");
@@ -60,31 +63,36 @@ function ProductListing() {
     toast.success("Added to cart");
   };
 
-  console.log("searchd==", searchedData);
-
-  const capitalizeWords = (str) => {
+  const capitalizeWords = (str: string): string => {
     return str
       .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map(
+        (word: string) =>
+          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      )
       .join(" ");
   };
 
-  const handleCategoryChange = (e) => {
+  const handleCategoryChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const selectedCategory = e.target.value;
     setCategory(selectedCategory);
     setCatog(capitalizeWords(selectedCategory) || "All Products");
   };
 
+  console.log("Search data - ", searchedData);
+
   return (
     <div>
-      <div className="flex mt-10  ml-7 md:ml-12">
+      <div className="flex mt-10 ml-7 md:ml-12">
         <h2 className="mr-2">Home</h2>
         <span>&gt;</span>
         <h2 className="ml-2">{catog}</h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row  items-start justify-stretch p-5 md:p-8 min-h-[calc(100vh-12.5vh)] md:min-h-[calc(100vh-6.5vh)]">
-        <aside className="hidden md:block min-w-full md:min-w-[16rem] h-auto lg:min-h-screen p-10 md:p-5 flex flex-col items-start justify-stretch space-y-2">
+      <div className="flex flex-col lg:flex-row items-start justify-stretch p-5 md:p-8 min-h-[calc(100vh-12.5vh)] md:min-h-[calc(100vh-6.5vh)]">
+        <aside className="hidden md:block min-w-full md:min-w-[16rem] h-auto lg:min-h-screen p-10 md:p-5 flex-col items-start justify-stretch space-y-2">
           <h2 className="text-xl font-bold">Browse by</h2>
           <hr className="border-t-1 py-2 border-black w-52" />
 
@@ -92,7 +100,7 @@ function ProductListing() {
             <select
               value={category}
               onChange={handleCategoryChange}
-              className="w-full  bg-white border border-gray-300 rounded-lg  focus:ring-0 border-none"
+              className="w-full bg-white border border-gray-300 rounded-lg focus:ring-0 border-none"
             >
               <option value="">All Products</option>
               {!loadingCategories &&
@@ -164,7 +172,7 @@ function ProductListing() {
               <button
                 disabled={!isPrevPage}
                 onClick={() => setPage((prev) => prev - 1)}
-                className="px-3 py-1 bg-[#5E5E4A]  text-white rounded text-sm disabled:opacity-50"
+                className="px-3 py-1 bg-[#5E5E4A] text-white rounded text-sm disabled:opacity-50"
               >
                 Prev
               </button>
@@ -174,7 +182,7 @@ function ProductListing() {
               <button
                 disabled={!isNextPage}
                 onClick={() => setPage((prev) => prev + 1)}
-                className="px-3 py-1 bg-[#5E5E4A]  text-white rounded text-sm disabled:opacity-50 "
+                className="px-3 py-1 bg-[#5E5E4A] text-white rounded text-sm disabled:opacity-50"
               >
                 Next
               </button>

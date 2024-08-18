@@ -15,9 +15,15 @@ function Footer() {
           <div className="py-10 flex flex-col gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
               <h1 className="text-[17px] md:text-2xl pb-5">HELP</h1>
-              <p className="text-[14px]">TERMS & CONDITIONS</p>
-              <p className="text-[14px]">PRIVACY POLICY</p>
-              <p className="text-[14px]">SHIPPING & RETURNS</p>
+              <Link to={"/terms-section"}>
+                <button className="text-[14px]">TERMS & CONDITIONS</button>
+              </Link>
+              <Link to={"/privacy-section"}>
+                <button className="text-[14px]">PRIVACY POLICY</button>
+              </Link>
+              <Link to={"/shipping-section"}>
+                <button className="text-[14px]">SHIPPING & RETURNS</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -25,8 +31,14 @@ function Footer() {
           <div className="py-10 flex flex-col items-center  gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
               <h1 className="text-[17px] md:text-2xl">PLEASUREYOURSELF</h1>
-              <p className="text-[14px]">BLOG</p>
-              <p className="text-[14px]">CONTACT US</p>
+
+              <Link to={"/blog-listing"}>
+                <button className="text-[14px]">BLOG</button>
+              </Link>
+              {/* <p className="text-[14px]">CONTACT US</p> */}
+              <Link to={"/contact-listing"}>
+                <button className="text-[14px]">CONTACT US</button>
+              </Link>
               <Link to={"/faq-section"}>
                 <button className="text-[14px]">FAQ</button>
               </Link>

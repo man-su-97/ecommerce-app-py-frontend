@@ -4,6 +4,11 @@
   font-weight: 400;
 }
 
+.blur-lg {
+  filter: blur(10px);
+  pointer-events: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -68,34 +73,6 @@ $color3: rgb(94, 94, 74);
   text-align: center;
 }
 
-// .header {
-//   @include flex(column, flex-end, stretch, 1.2rem);
-//   padding: 1rem;
-//   a {
-//     color: $color2;
-//     letter-spacing: 2px;
-//     font-size: 1rem;
-
-//     &:hover {
-//       color: $color3;
-//     }
-//   }
-
-//   dialog {
-//     border: 1px solid #ccc;
-//     border-radius: 5px;
-//     padding: 10px;
-//     width: 100px;
-//     position: absolute;
-//     left: calc(100% - 100px);
-//     top: 80%;
-//     left: 62%;
-//     z-index: 10;
-//     > div {
-//       @include flex(column, flex-start, center, 0.25rem);
-//     }
-//   }
-// }
 .header {
   @include flex(column, flex-end, stretch, 1.2rem);
   padding: 1rem;
@@ -115,9 +92,9 @@ $color3: rgb(94, 94, 74);
     border-radius: 5px;
     padding: 10px;
     width: 100px; /* Adjust width as needed */
-    position: absolute;
-    top: 70%; /* Position below the header */
-    left: 62%;
+    position: relative;
+    top: 16%;
+    left: 85%;
     transform: translateY(10px); /* Space from the top */
     z-index: 1000; /* Ensure it's on top of other content */
     background-color: white; /* Set background color */

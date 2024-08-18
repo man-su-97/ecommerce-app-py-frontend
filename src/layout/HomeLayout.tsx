@@ -1,4 +1,4 @@
-import bedroom_accessories from "../assets/bedroom accessories_1.jpg";
+import bedroom_accessories from "../assets/bedroom accessories.jpg";
 import sex_toys_for_women from "../assets/sex toys for women.jpg";
 import adult_toys from "../assets/adult toys.png";
 import sex_toys_for_lgbtq from "../assets/sex toys for lgbtq.png";

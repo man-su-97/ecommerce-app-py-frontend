@@ -6,15 +6,37 @@ import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-export const ProductpageAccordion = ({ product }) => {
+interface Product {
+  name: string;
+  price: number;
+  stock: number;
+  category: string;
+  ratings: number;
+  numOfReviews: number;
+  description: string;
+  photos: {
+    url: string;
+    public_id: string;
+  }[];
+  _id: string;
+}
+
+// Define the props type
+interface ProductpageAccordionProps {
+  product: Product;
+}
+
+// Update the props destructuring
+export const ProductpageAccordion = ({
+  product,
+}: ProductpageAccordionProps) => {
   const [expanded, setExpanded] = useState<string | false>("panel1");
 
   const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
 
-  console.log("apap", product.description);
   return (
     <div>
       <div>

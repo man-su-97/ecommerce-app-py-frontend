@@ -36,7 +36,6 @@ const ProductSlider = () => {
     toast.success("Added to cart");
   };
 
-  const quantity = 1;
   // Handle loading state
   if (isLoading)
     return (

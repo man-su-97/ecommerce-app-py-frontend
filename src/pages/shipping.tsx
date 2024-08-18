@@ -32,7 +32,6 @@ const Shipping = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submitting form...");
 
     dispatch(saveShippingInfo(shippingInfo));
 
@@ -53,7 +52,7 @@ const Shipping = () => {
         throw new Error("Invalid response from server");
       }
 
-      console.log("Received client secret:", data.clientSecret);
+      // console.log("Received client secret:", data.clientSecret);
 
       navigate("/pay", {
         state: data.clientSecret,

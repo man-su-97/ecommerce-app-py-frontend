@@ -21,6 +21,7 @@ const Productmanagement = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useProductDetailsQuery(params.id!);
+  console.log("Prdouctmngmnt --", data);
 
   const { price, photos, name, stock, category, description } =
     data?.product || {
