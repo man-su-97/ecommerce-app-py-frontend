@@ -238,13 +238,14 @@ const CheckOutForm = () => {
       <form onSubmit={submitHandler}>
         <div className="min-h-[20rem] shadow-md shadow-[#5E5E4A]">
           <div className="App-cards">
-            <label className="border block p-1">
+            <label className="border block py-3">
               <input
                 type="radio"
                 name="paymentMethod"
                 value="Online"
                 checked={paymentMethod === "Online"}
                 onChange={() => setPaymentMethod("Online")}
+                className="ml-[-20px]"
               />
               <span className="font-avenirCF px-2 text-sm">
                 Razorpay Secure (UPI,Cards,Wallets,Netbanking)
@@ -260,13 +261,14 @@ const CheckOutForm = () => {
             </div>
           </div>
           <div className="">
-            <label className="border block p-2">
+            <label className="border block p-3">
               <input
                 type="radio"
                 name="paymentMethod"
                 value="COD"
                 checked={paymentMethod === "COD"}
                 onChange={() => setPaymentMethod("COD")}
+                className="ml-2"
               />
               <span className="font-avenirCF px-2 text-sm">
                 Cash on Delivery (COD)
