@@ -1,4 +1,4 @@
-import bedroom_accessories from "../assets/bedroom accessories.jpg";
+import bedroom_accessories from "../assets/new_banner.jpeg";
 import sex_toys_for_women from "../assets/sex toys for women.jpg";
 import adult_toys from "../assets/adult toys.png";
 import sex_toys_for_lgbtq from "../assets/sex toys for lgbtq.png";
@@ -9,12 +9,27 @@ import Footer from "../pages/footer-section";
 function HomeLayout() {
   return (
     <div className="w-full h-full overflow-x-hidden">
-      <section className="w-full md:max-h-[736px]  relative overflow-hidden">
-        <img
-          src={bedroom_accessories}
-          alt="banner"
-          className="w-full object-cover object-bottom"
-        />
+      <section className="w-full md:h-[736px]  relative overflow-hidden">
+        <div className="h-80 md:h-full w-full">
+          <img
+            src={bedroom_accessories}
+            alt="banner"
+            className="object-cover w-full h-full"
+          />
+        </div>
+
+        <div className="absolute top-14 left-4 md:top-36 md:left-10 flex items-center md:top-1/6 ">
+          <h1 className="text-white text-3xl md:text-7xl font-bold md:text-start">
+            <div className="hidden md:block">
+              Your Pleasure, Perfectly
+              <br /> Priced.
+            </div>
+            <div className="md:hidden text-start">
+              Your Pleasure,
+              <br /> Perfectly Priced.
+            </div>
+          </h1>
+        </div>
       </section>
 
       <div className="flex justify-center max-w-full">
