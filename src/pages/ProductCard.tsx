@@ -22,6 +22,7 @@ export const ProductCard = ({
   stock,
   handler,
 }: ProductsProps) => {
+  console.log("pp-", productId, price, name, photos, stock, handler);
   if (
     !productId ||
     !price ||
@@ -44,43 +45,42 @@ export const ProductCard = ({
       stock,
       quantity: 1,
     };
-    console.log("Adding item to cart: ", cartItem);
     const result = handler(cartItem);
     console.log("Handler result: ", result);
   };
 
   return (
-    <div key={productId} className="group relative">
-      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+    <div key={productId} className="w-full">
+      <div className="min-w-[280px] min-h-[373px] lg:min-h-[422px] lg:max-w-[320px]">
         <Link to={`/product/${productId}`}>
           <img
             src={transformImage(photos?.[0]?.url, 400)}
             alt={name}
-            className="h-full w-full object-cover object-center group-hover:opacity-75"
+            className="w-full h-[473px] lg:w-full lg:h-[422px]"
           />
         </Link>
       </div>
-      <div className="mt-4 flex justify-between">
-        <div>
-          <h3 className="text-sm text-gray-700">
-            <Link to={`/product/${productId}`}>
-              <span aria-hidden="true" className=" inset-0">
-                {name}
-              </span>
-            </Link>
-          </h3>
-          <p className="text-sm font-medium text-gray-900">
-            <span>&#8377;</span>
-            {price}
-          </p>
+      <div className="px-6">
+        <div className="mt-4 flex justify-between">
+          <div>
+            <h3 className="text-[] text-black max-h-10 min-h-11 overflow-hidden">
+              <Link to={`/product/${productId}`}>
+                <span className="inset-0 text-[16px] font-[398]">{name}</span>
+              </Link>
+            </h3>
+            <p className="text-[16px] font-[350] py-2 text-black">
+              <span>&#8377;</span>
+              {price}
+            </p>
+          </div>
         </div>
+        <button
+          onClick={handleClick}
+          className="mt-6 flex w-full items-center justify-center border border-black bg-transparent hover:bg-[#5E5E4A] px-8 py-3 text-black hover:text-white  focus:ring-2 focus:ring-indigo-500 "
+        >
+          Add to Cart
+        </button>
       </div>
-      <button
-        onClick={handleClick}
-        className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-[#DCB4BC] px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
-        Add to bag
-      </button>
     </div>
   );
 };

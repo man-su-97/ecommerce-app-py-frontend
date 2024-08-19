@@ -1,7 +1,6 @@
 import { CarouselButtonType, MyntraCarousel, Slider, useRating } from "6pp";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { FaTrash } from "react-icons/fa";
 import {
   FaArrowLeftLong,
   FaArrowRightLong,
@@ -10,7 +9,7 @@ import {
 } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Skeleton } from "../components/Loader";
 import RatingsComponent from "../components/ratings";
 import {
@@ -21,8 +20,12 @@ import {
 } from "../redux/api/productAPI";
 import { addToCart } from "../redux/reducers/cartReducer";
 import { RootState } from "../redux/store";
-import { CartItem, Review } from "../types/types";
+import { CartItem } from "../types/types";
 import { responseToast } from "../utils/features";
+import * as React from "react";
+import ReviewCard from "./ReviewCard";
+import { ProductpageAccordion } from "./ProductpageAccordion";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -42,25 +45,19 @@ const ProductDetails = () => {
   const [createReview] = useNewReviewMutation();
   const [deleteReview] = useDeleteReviewMutation();
 
+  // Handle quantity changes
   const decrement = () => setQuantity((prev) => prev - 1);
   const increment = () => {
     if (data?.product?.stock === quantity)
       return toast.error(`${data?.product?.stock} available only`);
     setQuantity((prev) => prev + 1);
   };
-
-  const addToCartHandler = (cartItem: CartItem) => {
-    if (cartItem.stock < 1) return toast.error("Out of Stock");
-
-    dispatch(addToCart(cartItem));
-    toast.success("Added to cart");
+  const reviewCloseHandler = () => {
+    reviewDialogRef.current?.close();
+    setRating(0);
+    setReviewComment("");
   };
-
-  if (isError) return <Navigate to="/404" />;
-
-  const showDialog = () => {
-    reviewDialogRef.current?.showModal();
-  };
+  console.log("product-details data-", data);
 
   const {
     Ratings: RatingsEditable,
@@ -72,18 +69,28 @@ const ProductDetails = () => {
     value: 0,
     selectable: true,
     styles: {
-      fontSize: "1.75rem",
+      fontSize: "1.2rem",
       color: "coral",
       justifyContent: "flex-start",
     },
   });
 
-  const reviewCloseHandler = () => {
-    reviewDialogRef.current?.close();
-    setRating(0);
-    setReviewComment("");
+  // Handle add to cart
+  const addToCartHandler = (cartItem: CartItem) => {
+    if (cartItem.stock < 1) return toast.error("Out of Stock");
+
+    dispatch(addToCart(cartItem));
+    toast.success("Added to cart");
   };
 
+  if (isError) return <Navigate to="/404" />;
+
+  // Show review dialog
+  const showDialog = () => {
+    reviewDialogRef.current?.showModal();
+  };
+
+  // Handle review submission
   const submitReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setReviewSubmitLoading(true);
@@ -97,81 +104,145 @@ const ProductDetails = () => {
     });
 
     setReviewSubmitLoading(false);
-
     responseToast(res, null, "");
-
-    // API call to submit review
   };
 
+  // Handle review deletion
   const handleDeleteReview = async (reviewId: string) => {
     const res = await deleteReview({ reviewId, userId: user?._id });
     responseToast(res, null, "");
   };
 
   return (
-    <div className="product-details">
+    <div className="relative font-avenirCF">
       {isLoading ? (
         <ProductLoader />
       ) : (
         <>
-          <main>
-            <section>
-              <Slider
-                showThumbnails
-                showNav={false}
-                onClick={() => setCarouselOpen(true)}
-                images={data?.product?.photos.map((i) => i.url) || []}
-              />
-              {carouselOpen && (
-                <MyntraCarousel
-                  NextButton={NextButton}
-                  PrevButton={PrevButton}
-                  setIsOpen={setCarouselOpen}
-                  images={data?.product?.photos.map((i) => i.url) || []}
-                />
-              )}
-            </section>
-            <section>
-              <code>{data?.product?.category}</code>
-              <h1>{data?.product?.name}</h1>
-              <em
-                style={{ display: "flex", gap: "1rem", alignItems: "center" }}
-              >
-                <RatingsComponent value={data?.product?.ratings || 0} />(
-                {data?.product?.numOfReviews} reviews)
-              </em>
-              <h3>₹{data?.product?.price}</h3>
-              <article>
-                <div>
-                  <button onClick={decrement}>-</button>
-                  <span>{quantity}</span>
-                  <button onClick={increment}>+</button>
+          <main className="flex flex-col mx-5 md:mx-60 justify-between gap-16">
+            <div className="mt-16 hidden md:block">
+              <span className="text-base font-light">Home</span>
+              <span> / </span>
+              <span className="text-base font-light">
+                {data?.product?.category}
+              </span>
+              <span> / </span>
+              <span className="text-base font-light">
+                {data?.product?.name}
+              </span>
+            </div>
+            <div className="md:hidden flex items-center justify-start mt-5">
+              <Link to="/shop-section">
+                <ArrowBackIosIcon fontSize="small" />
+                <span>Back to SHOP</span>
+              </Link>
+            </div>
+            <div className="w-full flex flex-col md:flex-row md:gap-10">
+              <section className="mb-10 md:w-1/2">
+                <div className="">
+                  <Slider
+                    showThumbnails
+                    showNav={false}
+                    onClick={() => setCarouselOpen(true)}
+                    images={data?.product?.photos.map((i) => i.url) || []}
+                  />
                 </div>
-                <button
-                  onClick={() =>
-                    addToCartHandler({
-                      productId: data?.product?._id!,
-                      name: data?.product?.name!,
-                      price: data?.product?.price!,
-                      stock: data?.product?.stock!,
-                      quantity,
-                      photo: data?.product?.photos[0].url || "",
-                    })
-                  }
-                >
-                  Add To Cart
-                </button>
-              </article>
 
-              <p>{data?.product?.description}</p>
-            </section>
+                {carouselOpen && (
+                  <MyntraCarousel
+                    NextButton={NextButton}
+                    PrevButton={PrevButton}
+                    setIsOpen={setCarouselOpen}
+                    images={data?.product?.photos.map((i) => i.url) || []}
+                  />
+                )}
+              </section>
+              <section className="flex flex-col md:w-1/2">
+                <h1 className="text-gray-700 font-normal text-2xl">
+                  {data?.product?.name}
+                </h1>
+                <div className="">
+                  <em
+                    style={{
+                      display: "flex",
+                      gap: "1rem",
+                      alignItems: "center",
+                      fontSize: "small",
+                      padding: "4px 0px",
+                    }}
+                  >
+                    <RatingsComponent value={data?.product?.ratings || 0} />(
+                    {data?.product?.numOfReviews} reviews)
+                  </em>
+                </div>
+
+                <h3 className="my-5 text-gray-700 font-light text-2xl">
+                  ₹{data?.product?.price}
+                </h3>
+                <article>
+                  <div className="flex flex-col my-5">
+                    <p className="text-sm font-light">Quantity</p>
+                    <div className="py-2">
+                      <div className="border border-black flex justify-evenly w-16">
+                        <button onClick={decrement}>-</button>
+                        <p>{quantity}</p>
+                        <button onClick={increment}>+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 my-10">
+                    <button
+                      className="bg-[#5E5E4A] text-white p-3 w-full"
+                      onClick={() =>
+                        addToCartHandler({
+                          productId: data?.product?._id!,
+                          name: data?.product?.name!,
+                          price: data?.product?.price!,
+                          stock: data?.product?.stock!,
+                          quantity,
+                          photo: data?.product?.photos[0].url || "",
+                        })
+                      }
+                    >
+                      Add To Cart
+                    </button>
+                    <button
+                      onClick={() =>
+                        addToCartHandler({
+                          productId: data?.product?._id!,
+                          name: data?.product?.name!,
+                          price: data?.product?.price!,
+                          stock: data?.product?.stock!,
+                          quantity,
+                          photo: data?.product?.photos[0].url || "",
+                        })
+                      }
+                      className="bg-black border p-3 w-full"
+                    >
+                      <Link to="/cart">
+                        <span className="text-white">Buy Now</span>
+                      </Link>
+                    </button>
+                  </div>
+                </article>
+                {data?.product && (
+                  <ProductpageAccordion product={data.product} />
+                )}
+              </section>
+            </div>
           </main>
         </>
       )}
 
-      <dialog ref={reviewDialogRef} className="review-dialog">
-        <button onClick={reviewCloseHandler}>X</button>
-        <h2>Write a Review</h2>
+      <dialog
+        ref={reviewDialogRef}
+        className="absolute mx-auto my-auto min-w-[270px] min-h-[400px] p-3"
+      >
+        <button onClick={reviewCloseHandler}>
+          X <span>close</span>
+        </button>
+        <h2 className="text-base my-2">Write a Review</h2>
         <form onSubmit={submitReview}>
           <textarea
             value={reviewComment}
@@ -179,18 +250,25 @@ const ProductDetails = () => {
             placeholder="Review..."
           ></textarea>
           <RatingsEditable />
-          <button disabled={reviewSubmitLoading} type="submit">
+          <button
+            className="bg-[#A05083] px-3 py-1 mt-5 text-white text-sm"
+            disabled={reviewSubmitLoading}
+            type="submit"
+          >
             Submit
           </button>
         </form>
       </dialog>
 
-      <section>
-        <article>
-          <h2>Reviews</h2>
-
+      <section className="mx-5 md:mx-60 mt-10">
+        <article className="min-h-96">
+          <h2 className="text-sm">Write Review</h2>
           {reviewsResponse.isLoading
-            ? null
+            ? user && (
+                <button onClick={showDialog}>
+                  <FiEdit />
+                </button>
+              )
             : user && (
                 <button onClick={showDialog}>
                   <FiEdit />
@@ -226,30 +304,6 @@ const ProductDetails = () => {
     </div>
   );
 };
-
-const ReviewCard = ({
-  review,
-  userId,
-  handleDeleteReview,
-}: {
-  userId?: string;
-  review: Review;
-  handleDeleteReview: (reviewId: string) => void;
-}) => (
-  <div className="review">
-    <RatingsComponent value={review.rating} />
-    <p>{review.comment}</p>
-    <div>
-      <img src={review.user.photo} alt="User" />
-      <small>{review.user.name}</small>
-    </div>
-    {userId === review.user._id && (
-      <button onClick={() => handleDeleteReview(review._id)}>
-        <FaTrash />
-      </button>
-    )}
-  </div>
-);
 
 const ProductLoader = () => {
   return (

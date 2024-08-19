@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "avenirCF";
+  src: url("/fonts/AvenirLTProBook.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "arialBlackCF";
+  src: url("/fonts/ariblk.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

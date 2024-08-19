@@ -1,34 +1,29 @@
-import banner from "../assets/new_banner.jpeg";
+import bedroom_accessories from "../assets/bedroom accessories.jpg";
 import sex_toys_for_women from "../assets/sex toys for women.jpg";
 import adult_toys from "../assets/adult toys.png";
 import sex_toys_for_lgbtq from "../assets/sex toys for lgbtq.png";
 import ProductSlider from "../pages/Slider";
 import { Link } from "react-router-dom";
+import Footer from "../pages/footer-section";
 
 function HomeLayout() {
   return (
-    <div className="max-w-full overflow-x-hidden">
-      <section className="w-screen h-[719px] relative overflow-hidden">
+    <div className="w-full h-full overflow-x-hidden">
+      <section className="w-full md:max-h-[736px]  relative overflow-hidden">
         <img
-          src={banner}
+          src={bedroom_accessories}
           alt="banner"
-          className="w-full object-cover object-center"
+          className="w-full object-cover object-bottom"
         />
-        <div className="absolute inset-24 flex items-center  top-1/6 ">
-          <h1 className="text-white text-5xl md:text-7xl font-bold">
-            Your Pleasure, Perfectly
-            <br /> Priced.
-          </h1>
-        </div>
       </section>
 
       <div className="flex justify-center max-w-full">
-        <h1 className="text-5xl my-20">WHY US ?</h1>
+        <h1 className="text-xl py-10 md:text-5xl md:my-20">WHY US ?</h1>
       </div>
 
-      <div className="px-10 lg:px-40 flex flex-col lg:flex-row max-w-full">
-        <div className="px-0 lg:px-40 py-14 flex-1">
-          <p className="text-justify overflow-hidden">
+      <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60 ">
+        <div className="w-full md:w-1/2 p-5 md:pl-20 ">
+          <p className=" text-center md:text-left overflow-hidden leading-loose text-[17px]">
             We are the first Indian brand specializing in personalized women and
             LGBTQI+ intimate products, dedicated to revolutionizing your
             intimate experience. Our large variety of products including
@@ -40,36 +35,41 @@ function HomeLayout() {
             little luxury without the luxury price tag – smart, savvy, and
             oh-so-satisfying!.
           </p>
-          <button className="bg-[#DCB4BC] text-white text-xs rounded-lg px-4 py-2 mt-10">
-            <Link to={"/product-listing"}>SHOP NOW</Link>
+          <button className="bg-[#5E5E4A] px-9 ml-32 md:ml-0 text-xs md:px-9 py-3 md:py-3 mt-5">
+            <Link to={"/product-listing"}>
+              <p className="text-white">SHOP NOW</p>
+            </Link>
           </button>
         </div>
-
-        <img
-          src={sex_toys_for_women}
-          alt="story-img-1"
-          className="h-auto w-full lg:w-1/2 lg:h-2/3"
-        />
+        <div className="w-full md:w-1/2 h-80 ">
+          <img
+            src={sex_toys_for_women}
+            alt="story-img-1"
+            className="md:min-h-[590px] lg:min-h-auto md:min-w-[490px] lg:min-w-auto"
+          />
+        </div>
       </div>
-      <div className="bg-[#DCB4BC] pt-48 my-40 pb-20 w-screen">
+      <div className="bg-[#DCB4BC] py-40 lg:py-52 lg:mt-20 my-40 w-screen h-auto">
         <ProductSlider />
       </div>
-      <div className="px-10 lg:px-40 flex flex-col lg:flex-row w-full h-full">
-        <div className="w-full lg:w-2/5 h-full pl-0 lg:pl-20 pt-10">
+      <div className="px-10   xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center md:space-x-10">
+        <div className="w-full lg:w-2/5 h-full  lg:mt-[-80px] ">
           <img
             src={adult_toys}
             alt="story-img-2"
-            className="h-auto w-full lg:w-auto"
+            className="md:min-h-[576px] md:min-w-[455px]"
           />
         </div>
 
         <div className="w-full lg:w-3/5 h-full">
-          <div className="flex flex-col items-start w-full lg:w-96 space-y-10 lg:ml-60 mt-20 lg:mt-80">
+          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10  lg:ml-10 mt-6 lg:mt-0">
             <div>
-              <h2 className="text-4xl">BEYOND PERFECT</h2>
+              <h2 className="text-xl px-20 md:px-0 pb-4 md:text-[39px]">
+                BEYOND PERFECT
+              </h2>
             </div>
 
-            <p className="text-justify">
+            <p className="text-[14px] md:text-[17px] text-center md:text-justify xl:leading-loose">
               Why should one go for the ordinary when there is extraordinary?
               Being one of the largest and fastest-growing providers of luxury
               women and LGBTQ+ products in India, Pleasure Yourself is more than
@@ -84,7 +84,7 @@ function HomeLayout() {
       </div>
 
       <div className="flex flex-col items-center justify-between">
-        <h2 className="text-3xl mt-48">PLEASURE FOR EVERYONE</h2>
+        <h2 className="text-3xl mt-10 md:mt-48">PLEASURE FOR EVERYONE</h2>
         <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-10 px-4">
           At Pleasure Yourself, we celebrate your journey to self-discovery. As
           pioneers in personalized adult products for the LGBTQ+ community,
@@ -95,48 +95,13 @@ function HomeLayout() {
         </p>
         <img
           src={sex_toys_for_lgbtq}
-          className="w-full lg:w-[55rem] h-auto object-cover object-center"
+          className="w-full lg:w-[55rem] h-auto object-cover object-center px-5"
           alt="footerImage"
         />
       </div>
-      <div className="flex bg-[#DCB4BC] justify-evenly items-center mt-20 px-4 lg:px-0">
-        <div className="flex flex-col py-16">
-          <div className="py-10 flex flex-col gap-3">
-            <h1 className="text-3xl">SHOP</h1>
-            <ul>
-              <li>WOMEN</li>
-              <li>LGBTQ+</li>
-            </ul>
-          </div>
-          <div className="py-10 flex flex-col gap-3">
-            <h1 className="text-3xl">HELP</h1>
-            <ul>
-              <li>TERMS & CONDITIONS</li>
-              <li>PRIVACY POLICY</li>
-              <li>SHIPPING & RETURNS</li>
-            </ul>
-          </div>
-        </div>
-        <div className="flex flex-col py-10">
-          <div className="py-10 flex flex-col gap-3">
-            <h1 className="text-3xl">PLEASUREYOURSELF</h1>
-            <ul>
-              <li>BLOG</li>
-              <li>CONTACT US</li>
-              <Link to={"/faq-section"}>
-                <button>FAQ</button>
-              </Link>
-            </ul>
-          </div>
-          <div className="py-10">
-            <div className="py-10 flex flex-col gap-3">
-              <h1 className="text-3xl">NEWSLETTER SIGN UP</h1>
-              <p>Recieve our latest updates</p>
-              <input placeholder="enter your email" />
-              <button className="bg-black text-white py-2">SUBMIT</button>
-            </div>
-          </div>
-        </div>
+
+      <div>
+        <Footer />
       </div>
     </div>
   );

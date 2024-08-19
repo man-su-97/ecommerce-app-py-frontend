@@ -64,6 +64,7 @@ export type Order = {
   discount: number;
   total: number;
   status: string;
+  paymentMethod: "Online" | "COD";
   user: {
     name: string;
     _id: string;

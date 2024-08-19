@@ -28,6 +28,7 @@ const defaultData: Order = {
   tax: 0,
   total: 0,
   orderItems: [],
+  paymentMethod: "Online",
   user: { name: "", _id: "" },
   _id: "",
 };
@@ -50,12 +51,13 @@ const TransactionManagement = () => {
     total,
     discount,
     shippingCharges,
+    paymentMethod,
   } = data?.order || defaultData;
 
   const [updateOrder] = useUpdateOrderMutation();
   const [deleteOrder] = useDeleteOrderMutation();
 
-  console.log(orderItems);
+  console.log("data from transactionmngmnt-", orderItems);
 
   const updateHandler = async () => {
     const res = await updateOrder({
@@ -114,6 +116,8 @@ const TransactionManagement = () => {
                 Address:{" "}
                 {`${address}, ${city}, ${state}, ${country} ${pinCode}`}
               </p>
+              <h5>Payment Method</h5>
+              <p>Payment Mode: {paymentMethod}</p>
               <h5>Amount Info</h5>
               <p>Subtotal: {subtotal}</p>
               <p>Shipping Charges: {shippingCharges}</p>
@@ -156,6 +160,7 @@ const ProductCard = ({
 }: OrderItem) => (
   <div className="transaction-product-card">
     <img src={transformImage(photo)} alt={name} />
+
     <Link to={`/product/${productId}`}>{name}</Link>
     <span>
       ₹{price} X {quantity} = ₹{price * quantity}

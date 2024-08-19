@@ -53,7 +53,7 @@ const Products = () => {
     const err = error as CustomError;
     toast.error(err.data.message);
   }
-  console.log("product-", data);
+
   useEffect(() => {
     if (data)
       setRows(
