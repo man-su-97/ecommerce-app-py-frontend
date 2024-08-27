@@ -113,7 +113,7 @@ function App() {
             <Route path="/privacy-section" element={<PrivacyPolicy />} />
             <Route path="/shipping-section" element={<ShippingPolicy />} />
 
-            <Route path="/cart" element={<Cart2 user={user} />} />
+            <Route path="/cart" element={<Cart2 />} />
             <Route path="/post1" element={<Post1 />} />
             <Route path="/post2" element={<Post2 />} />
             <Route path="/post3" element={<Post3 />} />

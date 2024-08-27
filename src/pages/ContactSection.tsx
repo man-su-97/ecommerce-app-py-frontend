@@ -1,5 +1,4 @@
 import contact_pleasure_yourself from "../assets/contact Pleasure Yourself.png";
-import { Link } from "react-router-dom";
 import "./contact.scss";
 import Footer from "./footer-section";
 
