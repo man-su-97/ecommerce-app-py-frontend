@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import age_dialog from "../assets/18.png";
+import age_dialog from "../assets/Adult toys for 18+ Plus.png";
 
 const AgeVerification = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -23,19 +23,19 @@ const AgeVerification = () => {
   }
 
   return (
-    <div>
+    <div className="font-avenirCF">
       <div
         className={`fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center z-[9999] ${
           isUnderage ? "blur-lg" : ""
         }`}
       >
-        <div className="bg-slate-100 p-4 rounded-lg shadow-lg text-center z-50 ">
+        <div className="bg-slate-100 p-10 rounded-3xl shadow-lg text-center z-50 ">
           <img
             src={age_dialog}
-            className="size-32 mx-auto"
+            className="size-52 mx-auto"
             alt="Age Verification"
           />
-          <h2 className="text-base font-medium my-2">Are you 18 or older?</h2>
+          <h2 className="text-base font-medium my-5">Are you 18 or older ?</h2>
           <button
             onClick={handleVerify}
             className="bg-white text-black px-4  rounded-xl mr-4 border border-gray-700"

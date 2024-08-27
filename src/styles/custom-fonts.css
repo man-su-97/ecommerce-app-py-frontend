@@ -1,7 +1,7 @@
 @font-face {
   font-family: "avenirCF";
-  src: url("/fonts/AvenirLTProBook.otf") format("opentype");
-  font-weight: 400;
+  src: url("/fonts/Avenir Light.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -9,5 +9,12 @@
   font-family: "arialBlackCF";
   src: url("/fonts/ariblk.ttf") format("truetype");
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "libreBaskervileCF";
+  src: url("/fonts/LibreBaskerville-Bold.ttf") format("truetype");
+  font-weight: bold;
   font-style: normal;
 }

@@ -80,7 +80,7 @@ export const Cart2 = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row px-5 box-border md:px-52 pt-20 space-y-5 md:space-x-10 min-h-screen">
+      <div className="flex flex-col md:flex-row px-5 box-border md:px-52 pt-20 space-y-5 md:space-x-10 min-h-screen font-avenirCF">
         <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
           {cartItems.length > 0 ? (
             <Link to="/shipping">
@@ -91,7 +91,7 @@ export const Cart2 = () => {
           )}
         </button>
         <main className="w-full md:w-3/5 max-h-screen overflow-hidden">
-          <h1 className="text-xl border-b mb-4 pb-4">My Cart</h1>
+          <h1 className="text-xl border-b mb-4 pb-4 text-left">My Cart</h1>
           <div className="min-h-40 max-h-[700px] overflow-y-auto">
             {cartItems.length > 0 ? (
               cartItems.map((i, idx) => (
@@ -130,7 +130,9 @@ export const Cart2 = () => {
         </main>
 
         <aside className="w-full md:w-2/5 pr-5 md:pr-20 max-h-screen overflow-hidden">
-          <h1 className="text-xl border-b mb-4 pb-4">Order Summary</h1>
+          <h1 className="text-xl border-b mb-4 pb-4 text-left">
+            Order Summary
+          </h1>
           <div className="flex pb-2">
             <h2 className="mr-auto">Subtotal</h2>
             <h2 className="ml-auto">₹{subtotal}</h2>

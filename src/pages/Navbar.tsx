@@ -1,4 +1,4 @@
-import logo from "../assets/py.png";
+import logo from "../assets/pleasure yourself.png";
 import { GiShoppingBag } from "react-icons/gi";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -50,7 +50,7 @@ function Navbar({ user }: PropsType) {
   }, []);
 
   return (
-    <div className="flex items-center justify-around h-38 relative max-w-full">
+    <div className="flex items-center justify-around h-38 relative max-w-full font-avenirCF">
       <div className="flex relative space-x-8">
         <Link to={"/"}>
           <button className=""> HOME</button>

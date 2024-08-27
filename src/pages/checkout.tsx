@@ -10,6 +10,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import Cards from "react-credit-cards-2";
 import "./checkoutstyles.css";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import Footer from "./footer-section";
 
 const CheckOutForm = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -301,6 +302,7 @@ const Checkout = () => {
           orders placed using COD.Avoid this fee by paying online now
         </p>
       </div>
+      <Footer />
     </div>
   );
 };

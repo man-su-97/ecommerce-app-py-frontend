@@ -15,6 +15,7 @@ export default {
       fontFamily: {
         avenirCF: ["avenirCF", "sans-serif"],
         arialBlackCF: ["arialBlackCF", "serif"],
+        libreBaskervilleCF: ["libreBaskervileCF", "serif"],
       },
     },
   },

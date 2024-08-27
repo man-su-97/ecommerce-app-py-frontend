@@ -11,6 +11,7 @@ import Loader from "../components/Loader";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/reducers/cartReducer";
 import "./styles.css";
+import Footer from "./footer-section";
 
 function ProductListing() {
   const {
@@ -84,7 +85,7 @@ function ProductListing() {
   console.log("Search data - ", searchedData);
 
   return (
-    <div>
+    <div className="font-avenirCF">
       <div className="flex mt-10 ml-7 md:ml-12">
         <h2 className="mr-2">Home</h2>
         <span>&gt;</span>
@@ -93,7 +94,7 @@ function ProductListing() {
 
       <div className="flex flex-col lg:flex-row items-start justify-stretch p-5 md:p-8 min-h-[calc(100vh-12.5vh)] md:min-h-[calc(100vh-6.5vh)]">
         <aside className="hidden md:block min-w-full md:min-w-[16rem] h-auto lg:min-h-screen p-10 md:p-5 flex-col items-start justify-stretch space-y-2">
-          <h2 className="text-xl font-bold">Browse by</h2>
+          <h2 className="text-xl font-bold text-left">Browse by</h2>
           <hr className="border-t-1 py-2 border-black w-52" />
 
           <div>
@@ -113,7 +114,7 @@ function ProductListing() {
           </div>
         </aside>
         <main className="flex-1 px-2">
-          <h1 className="text-2xl font-bold mt-5">All Products</h1>
+          <h1 className="text-2xl font-bold mt-5 text-left">All Products</h1>
           <div className="">
             <p className="mt-2 mb-10 md:pr-60">
               This is your category description. It’s a great place to tell
@@ -190,6 +191,7 @@ function ProductListing() {
           )}
         </main>
       </div>
+      <Footer />
     </div>
   );
 }

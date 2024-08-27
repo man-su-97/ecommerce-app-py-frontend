@@ -68,7 +68,7 @@ const Shipping = () => {
   }, [cartItems]);
 
   return (
-    <div className="shipping">
+    <div className="shipping font-avenirCF">
       <button className="back-btn" onClick={() => navigate("/cart")}>
         <BiArrowBack />
       </button>

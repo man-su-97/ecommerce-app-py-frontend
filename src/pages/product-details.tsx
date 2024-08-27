@@ -132,7 +132,7 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="md:hidden flex items-center justify-start mt-5">
-              <Link to="/shop-section">
+              <Link to="/product-listing">
                 <ArrowBackIosIcon fontSize="small" />
                 <span>Back to SHOP</span>
               </Link>
@@ -158,7 +158,7 @@ const ProductDetails = () => {
                 )}
               </section>
               <section className="flex flex-col md:w-1/2">
-                <h1 className="text-gray-700 font-normal text-2xl">
+                <h1 className="text-gray-700 font-normal text-2xl text-left">
                   {data?.product?.name}
                 </h1>
                 <div className="">

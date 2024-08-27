@@ -354,7 +354,7 @@
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import logo from "../assets/py.png";
+import logo from "../assets/pleasure yourself.png";
 import { GiShoppingBag } from "react-icons/gi";
 import { User } from "../types/types";
 import { signOut } from "firebase/auth";
@@ -449,7 +449,7 @@ const Navbar2 = ({ user }: PropsType) => {
   };
 
   const MenuLinks = () => (
-    <div className="flex flex-col items-start md:flex-row relative gap-5 md:gap-1 md:space-x-8 md:ml-8">
+    <div className="flex flex-col items-start md:flex-row relative gap-5 md:gap-1 md:space-x-8 md:ml-8 font-avenirCF">
       <Link to="/" onClick={handleLinkClick}>
         HOME
       </Link>
@@ -487,7 +487,7 @@ const Navbar2 = ({ user }: PropsType) => {
   };
 
   return (
-    <div className="max-w-[1640px] mx-auto flex justify-between items-center p-1 md:p-4 shadow-sm">
+    <div className="max-w-[1640px] mx-auto flex justify-between items-center p-1 md:p-4 shadow-sm font-avenirCF">
       <div className="hidden md:flex md:relative space-x-8">
         <MenuLinks />
       </div>

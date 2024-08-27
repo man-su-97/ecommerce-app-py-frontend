@@ -4,6 +4,7 @@ import Post2 from "./Post2";
 import Post3 from "./Post3";
 import Post4 from "./Post4";
 import { Container, Row, Col } from "react-bootstrap";
+import Footer from "./footer-section";
 
 const BlogListing = () => {
   return (
@@ -30,6 +31,7 @@ const BlogListing = () => {
           </Link>
         </Col>
       </Row>
+      <Footer />
     </Container>
   );
 };

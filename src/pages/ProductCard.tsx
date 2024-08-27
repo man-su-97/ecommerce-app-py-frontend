@@ -50,7 +50,7 @@ export const ProductCard = ({
   };
 
   return (
-    <div key={productId} className="w-full">
+    <div key={productId} className="w-full font-avenirCF">
       <div className="min-w-[280px] min-h-[373px] lg:min-h-[422px] lg:max-w-[320px]">
         <Link to={`/product/${productId}`}>
           <img

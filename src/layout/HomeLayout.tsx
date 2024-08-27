@@ -8,7 +8,7 @@ import Footer from "../pages/footer-section";
 
 function HomeLayout() {
   return (
-    <div className="w-full h-full overflow-x-hidden">
+    <div className="w-full h-full overflow-x-hidden font-avenirCF ">
       <section className="w-full md:h-[736px]  relative overflow-hidden">
         <div className="h-80 md:h-full w-full">
           <img
@@ -18,8 +18,8 @@ function HomeLayout() {
           />
         </div>
 
-        <div className="absolute top-14 left-4 md:top-36 md:left-10 flex items-center md:top-1/6 ">
-          <h1 className="text-white text-3xl md:text-7xl font-bold md:text-start">
+        <div className="absolute top-14 left-4 md:top-36 md:left-10 flex items-center md:top-1/6 font-libreBaskervilleCF">
+          <h1 className="text-white text-3xl md:text-6xl font-[600] md:text-start">
             <div className="hidden md:block">
               Your Pleasure, Perfectly
               <br /> Priced.
@@ -33,11 +33,13 @@ function HomeLayout() {
       </section>
 
       <div className="flex justify-center max-w-full">
-        <h1 className="text-xl py-10 md:text-5xl md:my-20">WHY US ?</h1>
+        <h1 className="text-2xl py-10 md:text-4xl md:my-20 font-avenirCF tracking-wide font-light ">
+          WHY US ?
+        </h1>
       </div>
 
       <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60 ">
-        <div className="w-full md:w-1/2 p-5 md:pl-20 ">
+        {/* <div className="w-full md:w-1/2 p-5 md:pl-20 ">
           <p className=" text-center md:text-left overflow-hidden leading-loose text-[17px]">
             We are the first Indian brand specializing in personalized women and
             LGBTQI+ intimate products, dedicated to revolutionizing your
@@ -50,12 +52,32 @@ function HomeLayout() {
             little luxury without the luxury price tag – smart, savvy, and
             oh-so-satisfying!.
           </p>
-          <button className="bg-[#5E5E4A] px-9 ml-32 md:ml-0 text-xs md:px-9 py-3 md:py-3 mt-5">
+          <button className="bg-[#5E5E4A] px-9 md:ml-0 text-xs md:px-9 py-3 md:py-3 mt-5 ">
+            <Link to={"/product-listing"}>
+              <p className="text-white">SHOP NOW</p>
+            </Link>
+          </button>
+        </div> */}
+        <div className="w-full md:w-1/2 p-5 md:pl-20 flex flex-col items-center md:items-start">
+          <p className="text-center md:text-left overflow-hidden leading-loose text-[17px]">
+            We are the first Indian brand specializing in personalized women and
+            LGBTQI+ intimate products, dedicated to revolutionizing your
+            intimate experience. Our large variety of products including
+            vibrators, dildos to BDSM equipment, beautifully crafted high
+            quality options all at very accessible price points. As pioneers, we
+            prioritize skin-friendly materials and discreet packaging and
+            payments ensuring your comfort and privacy. Trust us to guide you on
+            your sexual journey like no other. Because everyone deserves a
+            little luxury without the luxury price tag – smart, savvy, and
+            oh-so-satisfying!.
+          </p>
+          <button className="bg-[#5E5E4A] px-9 text-xs py-3 mt-5">
             <Link to={"/product-listing"}>
               <p className="text-white">SHOP NOW</p>
             </Link>
           </button>
         </div>
+
         <div className="w-full md:w-1/2 h-80 ">
           <img
             src={sex_toys_for_women}
