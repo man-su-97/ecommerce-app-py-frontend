@@ -29,8 +29,8 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col-reverse md:flex-col">
-          <div className="py-10 flex flex-col items-center  gap-3">
+        <div className="flex flex-col-reverse md:flex-col ">
+          <div className="pt-20 flex flex-col items-start gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
               <h1 className="text-[17px] md:text-2xl">PLEASUREYOURSELF</h1>
 
@@ -45,8 +45,8 @@ function Footer() {
               </Link>
             </div>
           </div>
-          <div className=" hidden md:block py-10">
-            <div className="py-10 flex flex-col gap-3">
+          <div className=" hidden md:block mt-14">
+            <div className="pb-10 flex flex-col gap-3">
               <h1 className="text-3xl">NEWSLETTER SIGN UP</h1>
               <p>Recieve our latest updates</p>
               <input placeholder="enter your email" />

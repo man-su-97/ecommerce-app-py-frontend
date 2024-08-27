@@ -17,6 +17,7 @@ import {
 import { Link, Location, useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
 import { MdDiscount } from "react-icons/md";
+import logo from "../../assets/pleasure yourself.png";
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -60,7 +61,8 @@ const AdminSidebar = () => {
             : {}
         }
       >
-        <h2>Logo.</h2>
+        <img src={logo} className="size-24 mx-auto" />
+
         <DivOne location={location} />
         <DivTwo location={location} />
         <DivThree location={location} />

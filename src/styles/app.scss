@@ -89,22 +89,21 @@ $color3: rgb(94, 94, 74);
 
   dialog {
     border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 5px;
     width: 100px; /* Adjust width as needed */
     position: relative;
-    top: 16%;
+    top: 23%;
     left: 85%;
-    transform: translateY(10px); /* Space from the top */
-    z-index: 1000; /* Ensure it's on top of other content */
+    transform: translateY(40px);
+    z-index: 100; /* Ensure it's on top of other content */
     background-color: white; /* Set background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
     pointer-events: auto; /* Ensure clicks are registered */
     cursor: pointer; /* Show pointer cursor */
 
-    /* Ensure content inside dialog is properly spaced */
     > div {
-      @include flex(column, flex-start, center, 0.25rem);
+      @include flex(column, flex-start, center, 0.4rem);
     }
 
     /* Optional: Add a hover effect for better interactivity */

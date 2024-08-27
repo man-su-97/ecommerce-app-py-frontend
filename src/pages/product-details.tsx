@@ -26,6 +26,8 @@ import * as React from "react";
 import ReviewCard from "./ReviewCard";
 import { ProductpageAccordion } from "./ProductpageAccordion";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ProductSlider from "./Slider";
+import Footer from "./footer-section";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -218,10 +220,10 @@ const ProductDetails = () => {
                           photo: data?.product?.photos[0].url || "",
                         })
                       }
-                      className="bg-black border p-3 w-full"
+                      className="border border-[#5E5E4A] p-3 w-full"
                     >
                       <Link to="/cart">
-                        <span className="text-white">Buy Now</span>
+                        <span className="text-[#5E5E4A]">Buy Now</span>
                       </Link>
                     </button>
                   </div>
@@ -251,7 +253,7 @@ const ProductDetails = () => {
           ></textarea>
           <RatingsEditable />
           <button
-            className="bg-[#A05083] px-3 py-1 mt-5 text-white text-sm"
+            className="bg-[#5E5E4A] px-3 py-1 mt-5 text-white text-sm"
             disabled={reviewSubmitLoading}
             type="submit"
           >
@@ -261,7 +263,7 @@ const ProductDetails = () => {
       </dialog>
 
       <section className="mx-5 md:mx-60 mt-10">
-        <article className="min-h-96">
+        <article className="max-h-96 mx-auto flex items-center gap-2">
           <h2 className="text-sm">Write Review</h2>
           {reviewsResponse.isLoading
             ? user && (
@@ -278,9 +280,12 @@ const ProductDetails = () => {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             gap: "2rem",
-            overflowX: "auto",
+            overflowY: "auto",
             padding: "2rem",
+            height: "20rem",
+            margin: "2rem",
           }}
         >
           {reviewsResponse.isLoading ? (
@@ -301,6 +306,8 @@ const ProductDetails = () => {
           )}
         </div>
       </section>
+      <ProductSlider />
+      <Footer />
     </div>
   );
 };
@@ -312,7 +319,7 @@ const ProductLoader = () => {
         display: "flex",
         gap: "2rem",
         border: "1px solid #f1f1f1",
-        height: "80vh",
+        height: "10vh",
       }}
     >
       <section style={{ width: "100%", height: "100%" }}>

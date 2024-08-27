@@ -10,23 +10,24 @@ function HomeLayout() {
   return (
     <div className="w-full h-full overflow-x-hidden font-avenirCF ">
       <section className="w-full md:h-[736px]  relative overflow-hidden">
-        <div className="h-80 md:h-full w-full">
+        <div className="h-72 md:h-full w-full">
           <img
             src={bedroom_accessories}
             alt="banner"
-            className="object-cover w-full h-full"
+            className="object-fill w-full h-full"
           />
         </div>
 
-        <div className="absolute top-14 left-4 md:top-36 md:left-10 flex items-center md:top-1/6 font-libreBaskervilleCF">
-          <h1 className="text-white text-3xl md:text-6xl font-[600] md:text-start">
-            <div className="hidden md:block">
+        <div className="absolute top-24 left-4 md:top-40 md:left-14 flex items-center md:top-1/6 ">
+          <h1 className="text-white  md:text-6xl font-[600] md:text-start">
+            <div className="hidden md:block font-libreBaskervilleCF">
               Your Pleasure, Perfectly
               <br /> Priced.
             </div>
-            <div className="md:hidden text-start">
+            <div className="md:hidden text-start font-libreBaskervilleCF text-4xl">
               Your Pleasure,
-              <br /> Perfectly Priced.
+              <br />
+              Perfectly Priced.
             </div>
           </h1>
         </div>
@@ -39,25 +40,6 @@ function HomeLayout() {
       </div>
 
       <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60 ">
-        {/* <div className="w-full md:w-1/2 p-5 md:pl-20 ">
-          <p className=" text-center md:text-left overflow-hidden leading-loose text-[17px]">
-            We are the first Indian brand specializing in personalized women and
-            LGBTQI+ intimate products, dedicated to revolutionizing your
-            intimate experience. Our large variety of products including
-            vibrators, dildos to BDSM equipment, beautifully crafted high
-            quality options all at very accessible price points. As pioneers, we
-            prioritize skin-friendly materials and discreet packaging and
-            payments ensuring your comfort and privacy. Trust us to guide you on
-            your sexual journey like no other. Because everyone deserves a
-            little luxury without the luxury price tag – smart, savvy, and
-            oh-so-satisfying!.
-          </p>
-          <button className="bg-[#5E5E4A] px-9 md:ml-0 text-xs md:px-9 py-3 md:py-3 mt-5 ">
-            <Link to={"/product-listing"}>
-              <p className="text-white">SHOP NOW</p>
-            </Link>
-          </button>
-        </div> */}
         <div className="w-full md:w-1/2 p-5 md:pl-20 flex flex-col items-center md:items-start">
           <p className="text-center md:text-left overflow-hidden leading-loose text-[17px]">
             We are the first Indian brand specializing in personalized women and

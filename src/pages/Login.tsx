@@ -277,8 +277,8 @@ export function SignUp() {
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
-              <div className="flex flex-col sm:flex-row sm:space-x-3">
-                <div className="py-2">
+              <div className="flex flex-col sm:flex-row md:space-x-4">
+                <div className="py-2 basis=1/2">
                   <label htmlFor="firstName" className="sr-only">
                     First Name
                   </label>
@@ -294,7 +294,7 @@ export function SignUp() {
                     placeholder="First Name"
                   />
                 </div>
-                <div className="py-2">
+                <div className="py-2 basis-1/2">
                   <label htmlFor="lastName" className="sr-only">
                     Last Name
                   </label>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { VscError } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiLockSimpleFill } from "react-icons/pi";
 import { LiaTagSolid } from "react-icons/lia";
 
@@ -22,6 +22,8 @@ export const Cart2 = () => {
     (state: RootState) => state.cartReducer
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.userReducer);
 
   const [couponCode, setCouponCode] = useState<string>("");
   const [isValidCouponCode, setIsValidCouponCode] = useState<boolean>(false);
@@ -78,18 +80,39 @@ export const Cart2 = () => {
     dispatch(calculatePrice());
   }, [cartItems]);
 
+  console.log(user, "User deyails from user prop");
+
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      navigate("/product-listing");
+    } else if (!user.user) {
+      navigate("/login");
+    } else {
+      navigate("/shipping");
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col md:flex-row px-5 box-border md:px-52 pt-20 space-y-5 md:space-x-10 min-h-screen font-avenirCF">
-        <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
-          {cartItems.length > 0 ? (
-            <Link to="/shipping">
+        {/* {cartItems.length > 0 ? (
+          <Link to="/shipping">
+            <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
               <span className="text-white">Checkout</span>
-            </Link>
-          ) : (
+            </button>
+          </Link>
+        ) : (
+          <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
             <span className="text-white">Checkout</span>
-          )}
+          </button>
+        )} */}
+        <button
+          onClick={handleCheckout}
+          className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2"
+        >
+          <span className="text-white">Checkout</span>
         </button>
+
         <main className="w-full md:w-3/5 max-h-screen overflow-hidden">
           <h1 className="text-xl border-b mb-4 pb-4 text-left">My Cart</h1>
           <div className="min-h-40 max-h-[700px] overflow-y-auto">
@@ -152,15 +175,43 @@ export const Cart2 = () => {
             <h1 className="mr-auto">Total:</h1>
             <h1 className="ml-auto">₹{total}</h1>
           </div>
-          <button className="w-full bg-[#5E5E4A] py-2">
-            {cartItems.length > 0 ? (
-              <Link to="/shipping">
+          {/* 
+          {cartItems.length > 0 ? ({user ? (<Link to="/shipping">
+              <button className="w-full bg-[#5E5E4A] py-2">
                 <span className="text-white">Checkout</span>
-              </Link>
-            ) : (
+              </button>
+            </Link>):(  <Link to="/login">
+              <button className="w-full bg-[#5E5E4A] py-2 ">
+                <span className="text-white">Checkout</span>
+              </button>
+            </Link>)
+
+          }
+            
+          ) : (
+            <Link to="/login">
+              <button className="w-full bg-[#5E5E4A] py-2 ">
+                <span className="text-white">Checkout</span>
+              </button>
+            </Link>
+          )} */}
+          {/* <Link
+            to={
+              cartItems.length === 0
+                ? "/product-listing"
+                : user === null
+                ? "/login"
+                : "/shipping"
+            }
+          >
+            <button className="w-full bg-[#5E5E4A] py-2">
               <span className="text-white">Checkout</span>
-            )}
+            </button>
+          </Link> */}
+          <button onClick={handleCheckout} className="w-full bg-[#5E5E4A] py-2">
+            <span className="text-white">Checkout</span>
           </button>
+
           <div className="flex items-center justify-center gap-2 mt-3">
             <PiLockSimpleFill />
             <span className="text-xs font-medium">Secure Checkout</span>

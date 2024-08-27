@@ -1,12 +1,13 @@
 import contact_pleasure_yourself from "../assets/contact Pleasure Yourself.png";
 import { Link } from "react-router-dom";
 import "./contact.scss";
+import Footer from "./footer-section";
 
 function ContactSection() {
   return (
     <div>
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-2/4 bg-[#C4AEAD] h-[850px] md:min-h-[900px]">
+        <div className="md:basis-1/2 bg-[#C4AEAD] h-[850px] md:min-h-[900px]">
           <div className="flex gap-20 pb-20 py-10 px-10">
             <div className="md:p-20 w-full">
               <div className="flex flex-col leading-relaxed items-center md:items-start justify-center">
@@ -85,45 +86,7 @@ function ContactSection() {
           }}
         ></div>
       </div>
-      <div className="flex flex-col md:flex-row bg-[#DCB4BC] justify-evenly items-center mt-20 px-4 lg:px-0">
-        <div className="flex flex-col py-16">
-          <div className="py-10 flex flex-col gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl pb-5">SHOP</h1>
-              <p className="text-[14px]">WOMEN</p>
-              <p className="text-[14px]">LGBTQ+</p>
-            </div>
-          </div>
-          <div className="py-10 flex flex-col gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl pb-5">HELP</h1>
-              <p className="text-[14px]">TERMS & CONDITIONS</p>
-              <p className="text-[14px]">PRIVACY POLICY</p>
-              <p className="text-[14px]">SHIPPING & RETURNS</p>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col-reverse md:flex-col">
-          <div className="py-10 flex flex-col items-center  gap-3">
-            <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl">PLEASUREYOURSELF</h1>
-              <p className="text-[14px]">BLOG</p>
-              <p className="text-[14px]">CONTACT US</p>
-              <Link to={"/faq-section"}>
-                <button className="text-[14px]">FAQ</button>
-              </Link>
-            </div>
-          </div>
-          <div className=" hidden md:block py-10">
-            <div className="py-10 flex flex-col gap-3">
-              <h1 className="text-3xl">NEWSLETTER SIGN UP</h1>
-              <p>Recieve our latest updates</p>
-              <input placeholder="enter your email" />
-              <button className="bg-black text-white py-2">SUBMIT</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }
