@@ -8,13 +8,12 @@ const SlideText = ({ source }: { source: string[] }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("int");
       setCurrentItemIndex((index) =>
         index === source.length - 1 ? 0 : index + 1
       );
-    }, 2000);
+    }, 4000); // Keep a longer interval to accommodate the stay duration
     return () => clearInterval(interval);
-  }, [currentItemIndex, source]);
+  }, [source]);
 
   return (
     <div
@@ -22,21 +21,28 @@ const SlideText = ({ source }: { source: string[] }) => {
         display: "inline-flex",
         overflow: "hidden",
         position: "relative",
-        width: `${rect?.width}px`,
-        transition: "all 0.5s ease-out",
+        width: "100%", // Use full screen width
+        height: `${rect?.height}px`,
       }}
     >
       <span style={{ visibility: "hidden" }}>{source[currentItemIndex]}</span>
       {source.map((text, index) => (
         <span
+          key={index}
           ref={currentItemIndex === index ? rectRef : null}
           style={{
             position: "absolute",
-            top: (rect?.height ?? 0) * 2,
-            transform: `translateY(${
-              currentItemIndex === index ? `-${(rect?.height ?? 0) * 2}px` : 0
+            top: 0,
+            left: currentItemIndex === index ? "50%" : "-100%", // Start off-screen to the left, exit to the left
+            transform: `translateX(${
+              currentItemIndex === index ? "-50%" : "0%"
             })`,
-            transition: "all 1s ease-in-out",
+            transition:
+              currentItemIndex === index
+                ? "left 1s ease-in-out, transform 1s ease-in-out"
+                : "left 1s ease-in-out",
+            whiteSpace: "nowrap",
+            opacity: currentItemIndex === index ? 1 : 0,
           }}
         >
           {text}

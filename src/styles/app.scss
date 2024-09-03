@@ -91,16 +91,17 @@ $color3: rgb(94, 94, 74);
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 5px;
-    width: 100px; /* Adjust width as needed */
+    width: 100px;
     position: relative;
     top: 23%;
     left: 85%;
     transform: translateY(40px);
-    z-index: 100; /* Ensure it's on top of other content */
-    background-color: white; /* Set background color */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-    pointer-events: auto; /* Ensure clicks are registered */
-    cursor: pointer; /* Show pointer cursor */
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: medium;
 
     > div {
       @include flex(column, flex-start, center, 0.4rem);

@@ -159,37 +159,6 @@ const Navbar2 = ({ user }: PropsType) => {
               setTimeout(() => setSearchOpen(false), 200); // Delay to ensure results are visible
             }}
           />
-          {/* {searchOpen && searchedData && searchedData.products && (
-            <div
-              className="absolute top-14 left-0 z-20 px-3 py-4 max-h-[320px] min-w-[340px] overflow-y-auto bg-white border"
-              style={{ boxShadow: "0px 0px 8px #ddd" }}
-            >
-              {searchedData.products.length > 0 ? (
-                searchedData.products.map((product) => (
-                  <div key={product._id} className="mb-2">
-                    <Link
-                      to={`/product/${product._id}`}
-                      onMouseDown={(e) => {
-                        // Delay to ensure click is registered
-                        e.preventDefault();
-                        setTimeout(() => setSearchOpen(false), 100);
-                      }}
-                    >
-                      <SearchResult
-                        productId={product._id}
-                        name={product.name}
-                        price={product.price}
-                        photos={product.photos}
-                      />
-                    </Link>
-                  </div>
-                ))
-              ) : (
-                <div>No results found</div>
-              )}
-            </div>
-          )} */}
-
           {searchOpen && searchedData && searchedData.products && (
             <div
               className="absolute top-14 left-0 z-20 px-3 py-4 max-h-[320px] min-w-[340px] overflow-y-auto bg-white border"
@@ -200,7 +169,7 @@ const Navbar2 = ({ user }: PropsType) => {
                   <div key={product._id} className="mb-2">
                     <Link
                       to={`/product/${product._id}`}
-                      onClick={() => setSearchOpen(false)} // Close search dropdown on click
+                      onClick={() => setSearchOpen(false)}
                     >
                       <SearchResult
                         productId={product._id}
@@ -227,17 +196,14 @@ const Navbar2 = ({ user }: PropsType) => {
               <div className="">
                 {user.role === "admin" && (
                   <Link to="/admin/dashboard" onClick={handleLinkClick}>
-                    Admin
+                    <span>Admin</span>
                   </Link>
                 )}
                 <Link to="/orders" onClick={handleLinkClick}>
-                  Orders
+                  <span>Orders</span>
                 </Link>
-                <button
-                  onClick={logoutHandler}
-                  className="bg-red-600 text-white p-1 rounded"
-                >
-                  Sign Out
+                <button onClick={logoutHandler} className="bg-red-600 px-10">
+                  <span className="">Sign Out</span>
                 </button>
               </div>
             </dialog>
