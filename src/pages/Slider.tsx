@@ -80,7 +80,7 @@ const ProductSlider = () => {
           >
             {latestProducts.products.map((product) => (
               <SwiperSlide key={product._id}>
-                <div className="max-w-[357px] ">
+                <div className="max-w-96 ">
                   <ProductCard
                     key={product._id}
                     productId={product._id}

@@ -263,8 +263,10 @@ const ProductDetails = () => {
       </dialog>
 
       <section className="mx-5 md:mx-60 mt-10">
-        <article className="max-h-96 mx-auto flex items-center gap-2">
-          <h2 className="text-sm">Write Review</h2>
+        <article className="max-h-96 mx-auto flex items-center gap-2 px-5">
+          <h2 onClick={showDialog} className="text-sm">
+            Write Review
+          </h2>
           {reviewsResponse.isLoading
             ? user && (
                 <button onClick={showDialog}>
