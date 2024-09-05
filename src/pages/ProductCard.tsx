@@ -51,16 +51,16 @@ export const ProductCard = ({
 
   return (
     <div key={productId} className="w-full font-avenirCF">
-      <div className="min-w-[280px] min-h-[373px] lg:min-h-[422px] lg:max-w-[320px]">
+      <div className="max-w-[350px] min-h-[380px] md:min-h-[390px] md:min-w-[295px] md:max-w-[400px]">
         <Link to={`/product/${productId}`}>
           <img
             src={transformImage(photos?.[0]?.url, 400)}
             alt={name}
-            className="w-full h-[473px] lg:w-full lg:h-[422px]"
+            className="w-full h-[370px] lg:w-full lg:h-[380px] object-left-bottom"
           />
         </Link>
       </div>
-      <div className="px-6">
+      <div className="px-6 text-left">
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-[] text-black max-h-10 min-h-11 overflow-hidden">

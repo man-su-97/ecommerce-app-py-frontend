@@ -39,23 +39,20 @@ function HomeLayout() {
         </h1>
       </div>
 
-      <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60 ">
+      <div className="flex flex-col-reverse lg:flex-row w-full md:pl-52 md:pr-28 lg:mb-60">
         <div className="w-full md:w-1/2 p-5 md:pl-20 flex flex-col items-center md:items-start">
-          <p className="text-center md:text-left overflow-hidden leading-loose text-[17px]">
-            We are the first Indian brand specializing in personalized women and
-            LGBTQI+ intimate products, dedicated to revolutionizing your
-            intimate experience. Our large variety of products including
-            vibrators, dildos to BDSM equipment, beautifully crafted high
-            quality options all at very accessible price points. As pioneers, we
-            prioritize skin-friendly materials and discreet packaging and
-            payments ensuring your comfort and privacy. Trust us to guide you on
-            your sexual journey like no other. Because everyone deserves a
-            little luxury without the luxury price tag – smart, savvy, and
-            oh-so-satisfying!.
+          <p className="text-center md:text-left overflow-hidden leading-loose text-[22px] font-thin tracking-wide font-avenirCF">
+            Your source of enjoyment is readily available through our premium
+            quality and affordable adult toys. From cute looking vibrators to
+            realistic dildos, to fancy BDSM toys and more. Each toy ensures
+            maximum comfort andenjoyment you never felt .Gain the privacy you
+            deserve and seek this type of happiness here today!
           </p>
-          <button className="bg-[#5E5E4A] px-9 text-xs py-3 mt-5">
+          <button className="group bg-[#5E5E4A] px-9 text-xs py-3 mt-5 hover:bg-gray-200 hover:border border-black group-hover:text-black">
             <Link to={"/product-listing"}>
-              <p className="text-white">SHOP NOW</p>
+              <p className="text-white font-thin font-avenirCF text-sm group-hover:text-black">
+                Shop Now
+              </p>
             </Link>
           </button>
         </div>
@@ -68,10 +65,15 @@ function HomeLayout() {
           />
         </div>
       </div>
-      <div className="bg-[#DCB4BC] py-40 lg:py-52 lg:mt-20 my-40 w-screen h-auto">
-        <ProductSlider />
+      <div className="bg-[#DCB4BC] pb-16  pt-20 md:pt-40 mb-28 w-screen h-auto">
+        <div className="mb-10 md:mb-20">
+          <h1 className="mx-auto font-thin text-4xl md:text-5xl tracking-widest">
+            MOST POPULAR
+          </h1>
+        </div>
+        <ProductSlider text={"All Products"} />
       </div>
-      <div className="px-10   xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center md:space-x-10">
+      <div className="px-10 xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center md:space-x-10">
         <div className="w-full lg:w-2/5 h-full  lg:mt-[-80px] ">
           <img
             src={adult_toys}
@@ -80,15 +82,15 @@ function HomeLayout() {
           />
         </div>
 
-        <div className="w-full lg:w-3/5 h-full">
-          <div className="flex flex-col items-start w-full lg:w-96  md:space-y-10  lg:ml-10 mt-6 lg:mt-0">
+        <div className="w-full lg:w-3/5 h-full font-avenirCF">
+          <div className="flex flex-col items-center w-full lg:w-96  md:space-y-10  lg:ml-10 mt-6 lg:mt-0 ">
             <div>
-              <h2 className="text-xl px-20 md:px-0 pb-4 md:text-[39px]">
+              <h2 className="text-2xl  md:px-0 md:pb-1 md:text-[39px] font-thin">
                 BEYOND PERFECT
               </h2>
             </div>
 
-            <p className="text-[14px] md:text-[17px] text-center md:text-justify xl:leading-loose">
+            <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-6 px-4 font-avenirCF font-thin text-[17px] leading-loose tracking-wide">
               Why should one go for the ordinary when there is extraordinary?
               Being one of the largest and fastest-growing providers of luxury
               women and LGBTQ+ products in India, Pleasure Yourself is more than
@@ -103,8 +105,10 @@ function HomeLayout() {
       </div>
 
       <div className="flex flex-col items-center justify-between">
-        <h2 className="text-3xl mt-10 md:mt-48">PLEASURE FOR EVERYONE</h2>
-        <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-10 px-4">
+        <h2 className="text-2xl md:text-3xl mt-10 md:mt-32 font-thin font-avenirCF text-nowrap">
+          PLEASURE FOR EVERYONE
+        </h2>
+        <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-10 px-4 font-avenirCF font-thin text-[17px] leading-loose tracking-wide">
           At Pleasure Yourself, we celebrate your journey to self-discovery. As
           pioneers in personalized adult products for the LGBTQ+ community,
           we're proud to support your unique identity and desires. With our

@@ -8,46 +8,53 @@ const SlideText = ({ source }: { source: string[] }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentItemIndex((index) =>
-        index === source.length - 1 ? 0 : index + 1
-      );
-    }, 4000); // Keep a longer interval to accommodate the stay duration
+      setCurrentItemIndex((index) => (index + 1) % source.length);
+    }, 1000);
     return () => clearInterval(interval);
   }, [source]);
 
   return (
     <div
       style={{
-        display: "inline-flex",
-        overflow: "hidden",
         position: "relative",
-        width: "100%", // Use full screen width
+        minWidth: "100%",
         height: `${rect?.height}px`,
+        overflow: "hidden", // Ensure no overflow
       }}
     >
-      <span style={{ visibility: "hidden" }}>{source[currentItemIndex]}</span>
-      {source.map((text, index) => (
-        <span
-          key={index}
-          ref={currentItemIndex === index ? rectRef : null}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: currentItemIndex === index ? "50%" : "-100%", // Start off-screen to the left, exit to the left
-            transform: `translateX(${
-              currentItemIndex === index ? "-50%" : "0%"
-            })`,
-            transition:
-              currentItemIndex === index
-                ? "left 1s ease-in-out, transform 1s ease-in-out"
-                : "left 1s ease-in-out",
-            whiteSpace: "nowrap",
-            opacity: currentItemIndex === index ? 1 : 0,
-          }}
-        >
-          {text}
-        </span>
-      ))}
+      <div
+        style={{
+          display: "flex",
+          whiteSpace: "nowrap",
+          animation: `scroll ${source.length * 5}s linear infinite`,
+          willChange: "transform", // Optimize performance on mobile
+          gap: "5rem",
+        }}
+      >
+        {source.map((text, index) => (
+          <span
+            key={index}
+            ref={currentItemIndex === index ? rectRef : null}
+            style={{
+              maxWidth: "100%",
+              textAlign: "center",
+              opacity: currentItemIndex === index ? 1 : 1,
+            }}
+          >
+            {text}
+          </span>
+        ))}
+      </div>
+      <style>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+              transform: translateX(-${(source.length * 100) / 2}%);
+            }
+        }
+      `}</style>
     </div>
   );
 };

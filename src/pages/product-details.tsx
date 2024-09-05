@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Skeleton } from "../components/Loader";
 import RatingsComponent from "../components/ratings";
 import {
@@ -114,6 +114,7 @@ const ProductDetails = () => {
     const res = await deleteReview({ reviewId, userId: user?._id });
     responseToast(res, null, "");
   };
+  const navigate = useNavigate();
 
   return (
     <div className="relative font-avenirCF">
@@ -210,7 +211,7 @@ const ProductDetails = () => {
                       Add To Cart
                     </button>
                     <button
-                      onClick={() =>
+                      onClick={() => {
                         addToCartHandler({
                           productId: data?.product?._id!,
                           name: data?.product?.name!,
@@ -218,8 +219,9 @@ const ProductDetails = () => {
                           stock: data?.product?.stock!,
                           quantity,
                           photo: data?.product?.photos[0].url || "",
-                        })
-                      }
+                        });
+                        navigate("/cart");
+                      }}
                       className="border border-[#5E5E4A] p-3 w-full"
                     >
                       <Link to="/cart">
@@ -308,7 +310,10 @@ const ProductDetails = () => {
           )}
         </div>
       </section>
-      <ProductSlider />
+      <div>
+        <ProductSlider text={"You Might Also Like"} />
+      </div>
+
       <Footer />
     </div>
   );

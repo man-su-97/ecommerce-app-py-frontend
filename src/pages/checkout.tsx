@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RootState, server } from "../redux/store";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -10,7 +10,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import Cards from "react-credit-cards-2";
 import "./checkoutstyles.css";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import Footer from "./footer-section";
+import Modal from "react-modal";
 
 const CheckOutForm = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -28,10 +28,10 @@ const CheckOutForm = () => {
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string>("Online");
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const totalBeforePayment = paymentMethod === "COD" ? total + 29 : total;
 
-  // const [newOrder] = useNewOrderMutation();
   const dispatch = useDispatch();
 
   const loadRazorpayScript = () => {
@@ -44,13 +44,12 @@ const CheckOutForm = () => {
     });
   };
 
-  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsProcessing(true);
     const deliveryCharge = paymentMethod === "COD" ? 29 : 0;
 
     if (paymentMethod === "COD") {
-      // Handle COD order creation
       try {
         await axios.post(
           `${server}/api/v1/order/newWithCOD`,
@@ -75,14 +74,7 @@ const CheckOutForm = () => {
 
         dispatch(resetCart());
 
-        const adaptedResponse: ResType = {
-          data: {
-            success: true,
-            message: "Order Placed Successfully!",
-          },
-        };
-
-        responseToast(adaptedResponse, navigate, "/orders");
+        setShowModal(true); // Show the success modal
       } catch (error) {
         console.error("Error creating COD order:", error);
         toast.error("Error creating order. Please try again later.");
@@ -153,21 +145,11 @@ const CheckOutForm = () => {
               );
 
               const verificationResult = verificationRes.data;
-              // console.log("Verification Response: ", verificationRes);
 
               if (verificationResult && verificationResult.success) {
                 dispatch(resetCart());
 
-                const adaptedResponse: ResType = {
-                  data: {
-                    success: verificationResult.success,
-                    message:
-                      verificationResult.message ||
-                      "Payment verified successfully!",
-                  },
-                };
-
-                responseToast(adaptedResponse, navigate, "/orders");
+                setShowModal(true); // Show the success modal
               } else {
                 const adaptedError: ResType = {
                   error: {
@@ -208,7 +190,7 @@ const CheckOutForm = () => {
             contact: shippingInfo.contactNumber,
           },
           notes: {
-            address: "Dubai,U.A.E",
+            address: "",
           },
           theme: {
             color: "#DCB4BC",
@@ -234,11 +216,16 @@ const CheckOutForm = () => {
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/orders"); // Redirect to orders page
+  };
+
   return (
     <div className="checkout-container min-h-[20rem]">
       <form onSubmit={submitHandler}>
         <div className="min-h-[20rem] shadow-md shadow-[#5E5E4A]">
-          <div className="App-cards">
+          <div className="App-cards text-left">
             <label className="border block py-3">
               <input
                 type="radio"
@@ -246,32 +233,32 @@ const CheckOutForm = () => {
                 value="Online"
                 checked={paymentMethod === "Online"}
                 onChange={() => setPaymentMethod("Online")}
-                className="ml-[-20px]"
+                className="ml-[20px]"
               />
-              <span className="font-avenirCF px-2 text-sm">
-                Razorpay Secure (UPI,Cards,Wallets,Netbanking)
+              <span className="font-avenirCF text-left pl-2 text-sm">
+                Pay using UPI,Cards,Wallets,Netbanking
               </span>
             </label>
-            <div className="App-cards-list">
+            <div className="App-cards-list ">
               <Cards
                 name="John Smith"
                 number="5555 4444 3333 1111"
-                expiry="10/20"
-                cvc="737"
+                expiry="00/00"
+                cvc="000"
               />
             </div>
           </div>
-          <div className="">
-            <label className="border block p-3">
+          <div className="text-left">
+            <label className="border block py-3 text-left">
               <input
                 type="radio"
                 name="paymentMethod"
                 value="COD"
                 checked={paymentMethod === "COD"}
                 onChange={() => setPaymentMethod("COD")}
-                className="ml-2"
+                className="ml-[20px]"
               />
-              <span className="font-avenirCF px-2 text-sm">
+              <span className="font-avenirCF text-left pl-2 text-sm">
                 Cash on Delivery (COD)
               </span>
             </label>
@@ -281,30 +268,34 @@ const CheckOutForm = () => {
           {isProcessing ? "Processing..." : `Pay ${totalBeforePayment}`}
         </button>
       </form>
+
+      <Modal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        contentLabel="Order Success"
+        className="fixed inset-0 flex items-center justify-center z-50 outline-none focus:outline-none"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-out"
+      >
+        <div className="bg-white rounded-lg p-6 mx-2 md:p-8 max-w-md w-full mx-auto shadow-lg transform transition-transform duration-300 ease-out scale-100">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-center font-avenirCF">
+            Order Placed Successfully!
+          </h2>
+          <p className="text-base md:text-lg text-center font-avenirCF">
+            Your order has been placed successfully. Thank you for your
+            purchase!
+          </p>
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={closeModal}
+              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200 ease-in-out font-avenirCF"
+            >
+              Go to Orders
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
 
-const Checkout = () => {
-  const location = useLocation();
-
-  const clientSecret: string | undefined = location.state;
-
-  if (!clientSecret) return <Navigate to={"/shipping"} />;
-
-  return (
-    <div>
-      <CheckOutForm />
-      <div className="mt-10 w-[20rem] h-auto shadow-md border shadow-gray-200 mx-auto rounded mb-10">
-        <p className="font-avenirCF p-4">
-          {" "}
-          Due to handiling costs, a nominal fee of ₹29 will be charged for
-          orders placed using COD.Avoid this fee by paying online now
-        </p>
-      </div>
-      <Footer />
-    </div>
-  );
-};
-
-export default Checkout;
+export default CheckOutForm;

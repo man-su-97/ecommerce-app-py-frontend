@@ -175,39 +175,7 @@ export const Cart2 = () => {
             <h1 className="mr-auto">Total:</h1>
             <h1 className="ml-auto">₹{total}</h1>
           </div>
-          {/* 
-          {cartItems.length > 0 ? ({user ? (<Link to="/shipping">
-              <button className="w-full bg-[#5E5E4A] py-2">
-                <span className="text-white">Checkout</span>
-              </button>
-            </Link>):(  <Link to="/login">
-              <button className="w-full bg-[#5E5E4A] py-2 ">
-                <span className="text-white">Checkout</span>
-              </button>
-            </Link>)
 
-          }
-            
-          ) : (
-            <Link to="/login">
-              <button className="w-full bg-[#5E5E4A] py-2 ">
-                <span className="text-white">Checkout</span>
-              </button>
-            </Link>
-          )} */}
-          {/* <Link
-            to={
-              cartItems.length === 0
-                ? "/product-listing"
-                : user === null
-                ? "/login"
-                : "/shipping"
-            }
-          >
-            <button className="w-full bg-[#5E5E4A] py-2">
-              <span className="text-white">Checkout</span>
-            </button>
-          </Link> */}
           <button onClick={handleCheckout} className="w-full bg-[#5E5E4A] py-2">
             <span className="text-white">Checkout</span>
           </button>

@@ -18,6 +18,7 @@ const initialState: CartReducerInitialState = {
     pinCode: "",
     contactNumber: "",
   },
+  isCartOpen: false,
 };
 
 export const cartReducer = createSlice({
@@ -37,6 +38,7 @@ export const cartReducer = createSlice({
         state.cartItems.push(action.payload); // Add new item
       }
 
+      state.isCartOpen = true;
       state.loading = false;
     },
 
@@ -74,6 +76,9 @@ export const cartReducer = createSlice({
     saveShippingInfo: (state, action: PayloadAction<ShippingInfo>) => {
       state.shippingInfo = action.payload;
     },
+    toggleCartSidebar: (state, action: PayloadAction<boolean>) => {
+      state.isCartOpen = action.payload; // Toggle sidebar visibility
+    },
     resetCart: () => initialState,
   },
 });
@@ -84,5 +89,6 @@ export const {
   calculatePrice,
   discountApplied,
   saveShippingInfo,
+  toggleCartSidebar,
   resetCart,
 } = cartReducer.actions;

@@ -12,7 +12,7 @@ import { CartItem } from "../types/types";
 import { Skeleton } from "../components/Loader";
 import { ProductCard } from "./ProductCard";
 
-const ProductSlider = () => {
+const ProductSlider = ({ text }: { text: string }) => {
   const swiperRef = useRef<SwiperCore | null>(null);
   const { data: latestProducts, isLoading, error } = useLatestProductsQuery("");
 
@@ -45,14 +45,12 @@ const ProductSlider = () => {
     );
 
   // Handle error state
-  if (error) return <div>Error: {"Error from Slider file line 50"}</div>;
-
-  console.log("slider- ", latestProducts);
+  if (error) return <div>Error: {"Error from Slider"}</div>;
 
   return (
     <div className="text-center ">
-      <h1 className="text-5xl font-light pb-16 md:pb-36">MOST POPULAR</h1>
-      <div className="relative px-20 h-76">
+      <h2 className="text-2xl font-thin my-16 px-20 text-left">{text}</h2>
+      <div className="relative px-20">
         {latestProducts && latestProducts.products && (
           <Swiper
             onSwiper={(swiper) => {
@@ -68,19 +66,19 @@ const ProductSlider = () => {
                 spaceBetween: 20,
               },
               768: {
-                slidesPerView: 3,
-                spaceBetween: 60,
+                slidesPerView: 4,
+                spaceBetween: 15,
               },
               1024: {
-                slidesPerView: 3,
-                spaceBetween: 60,
+                slidesPerView: 4,
+                spaceBetween: 15,
               },
             }}
             className="mySwiper"
           >
             {latestProducts.products.map((product) => (
               <SwiperSlide key={product._id}>
-                <div className="max-w-96 ">
+                <div className="max-w-96">
                   <ProductCard
                     key={product._id}
                     productId={product._id}
@@ -95,7 +93,7 @@ const ProductSlider = () => {
             ))}
           </Swiper>
         )}
-        <div className="absolute top-[220px] transform -translate-y-1/2 left-4 z-50">
+        <div className="absolute top-60 md:top-[190px] transform -translate-y-1/2 left-4 z-50">
           <button
             onClick={slidePrev}
             className=" text-black p-5 focus:outline-none "
@@ -103,7 +101,7 @@ const ProductSlider = () => {
             &lt;
           </button>
         </div>
-        <div className="absolute top-[220px] transform -translate-y-1/2 right-4 z-50">
+        <div className="absolute top-60 md:top-[190px] transform -translate-y-1/2 right-4 z-50">
           <button
             onClick={slideNext}
             className=" text-black p-5 focus:outline-none"

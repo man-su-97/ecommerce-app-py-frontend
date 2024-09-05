@@ -21,6 +21,7 @@ function Header() {
           fontSize: "1rem",
           textWrap: "nowrap",
           textAlign: "center",
+          overflow: "hidden",
         }}
       >
         <SlideText source={mock} />

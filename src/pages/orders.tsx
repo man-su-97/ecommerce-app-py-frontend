@@ -92,10 +92,12 @@ const Orders = () => {
     rows.length > 6
   )();
   return (
-    <div className="container">
-      <h1>My Orders</h1>
-      {isLoading ? <Skeleton length={20} /> : Table}
-    </div>
+    <>
+      <h1 className="text-left ml-10 my-5 font-avenirCF text-lg">My Orders</h1>
+      <div className="container">
+        {isLoading ? <Skeleton length={20} /> : Table}
+      </div>
+    </>
   );
 };
 
