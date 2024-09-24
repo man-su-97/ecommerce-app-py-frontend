@@ -16,7 +16,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSignUpMutation } from "../redux/api/userAPI";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { MessageResponse } from "../types/api-types";
-import logo from "../assets/pleasure yourself.png";
+import logo from "../assets/Pleasureyourself-adult-toy-store.png";
 
 export function SignInSide() {
   const [email, setEmail] = useState("");

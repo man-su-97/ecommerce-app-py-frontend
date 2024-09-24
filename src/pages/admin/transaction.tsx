@@ -57,7 +57,7 @@ const Transaction = () => {
     const err = error as CustomError;
     toast.error(err.data.message);
   }
-  console.log("data from transaction -", data);
+
   useEffect(() => {
     if (data)
       setRows(

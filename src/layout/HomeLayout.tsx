@@ -35,7 +35,7 @@ function HomeLayout() {
 
       <div className="flex justify-center max-w-full">
         <h1 className="text-2xl py-10 md:text-4xl md:my-20 font-avenirCF tracking-wide font-light ">
-          WHY US ?
+          Exceptional Sex Toys for Women
         </h1>
       </div>
 
@@ -85,29 +85,31 @@ function HomeLayout() {
         <div className="w-full lg:w-3/5 h-full font-avenirCF">
           <div className="flex flex-col items-center w-full lg:w-96  md:space-y-10  lg:ml-10 mt-6 lg:mt-0 ">
             <div>
-              <h2 className="text-2xl  md:px-0 md:pb-1 md:text-[39px] font-thin">
+              <h2 className="text-2xl  md:px-0 md:pb-1 md:text-[30px] font-thin">
                 BEYOND PERFECT
               </h2>
             </div>
 
             <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-6 px-4 font-avenirCF font-thin text-[17px] leading-loose tracking-wide">
               Why should one go for the ordinary when there is extraordinary?
-              Being one of the largest and fastest-growing providers of luxury
-              women and LGBTQ+ products in India, Pleasure Yourself is more than
-              lifestyle products. Our products are so smooth, like silk for
-              customers to touch and explore; ranging from intimate
-              massagers,dildos,BDSM toys and more accessories and virtually
-              everything in between. Choose us for a journey beyond perfection
-              in the world of sex toys and adult pleasures.
+              Being one of the fastest-growing providers of premium sex toys in
+              India. Our products are so smooth, like silk for customers to
+              touch and explore; explore our wide range of collection including
+              vibrating dildos ,vibrators for women and other essentials.
+              Whether you are looking for personal massagers, dildo for women,
+              bondage kit or any other essentials, we got exactly what you need
+              if you want to buy sex toys online. Welcome to India’s
+              fastest-growing sex store where passion intertwines with
+              perfection in the classiest world of pleasure.
             </p>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-between">
-        <h2 className="text-2xl md:text-3xl mt-10 md:mt-32 font-thin font-avenirCF text-nowrap">
+        <h3 className="text-xl md:text-[24px] mt-10 md:mt-32 font-thin font-avenirCF text-nowrap">
           PLEASURE FOR EVERYONE
-        </h2>
+        </h3>
         <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-10 px-4 font-avenirCF font-thin text-[17px] leading-loose tracking-wide">
           At Pleasure Yourself, we celebrate your journey to self-discovery. As
           pioneers in personalized adult products for the LGBTQ+ community,
