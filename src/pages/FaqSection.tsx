@@ -1,4 +1,5 @@
 import { Accordion } from "flowbite-react";
+import Footer from "./footer-section";
 
 export function Component() {
   return (
@@ -259,6 +260,7 @@ function FaqSection() {
       <div className="px-10 md:px-80">
         <Component />
       </div>
+      <Footer />
     </>
   );
 }

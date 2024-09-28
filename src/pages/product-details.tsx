@@ -59,7 +59,7 @@ const ProductDetails = () => {
     setRating(0);
     setReviewComment("");
   };
-  console.log("product-details data-", data);
+  // console.log("product-details data-", data);
 
   const {
     Ratings: RatingsEditable,

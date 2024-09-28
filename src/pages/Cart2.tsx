@@ -80,8 +80,6 @@ export const Cart2 = () => {
     dispatch(calculatePrice());
   }, [cartItems]);
 
-  console.log(user, "User deyails from user prop");
-
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       navigate("/product-listing");

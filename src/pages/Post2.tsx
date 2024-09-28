@@ -1,5 +1,3 @@
-// Post2.js
-
 import { Link } from "react-router-dom";
 import post2_banner_img from "../assets/Beginner guide to using vibrators.png";
 

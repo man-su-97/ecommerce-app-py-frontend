@@ -1,14 +1,15 @@
 import post1_img from "../assets/Best beginner vibrators.png";
+import Footer from "./footer-section";
 
 const Post11 = () => {
   return (
     <>
-      <div className="mx-10 my-20 ">
+      <div className="mx-10 my-20 flex flex-col items-center ">
         <div className="px-2 md:px-40">
           <h1 className="text-4xl text-slate-600 text-left py-10 font-avenirCF font-medium">
             7 OF THE BEST SEX TOYS FOR NEWBIES IN 2024
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             Hi and welcome to our sex toys guide specially designed for the
             newcomers in the world of adult entertainment. We have included in
             this list of toys that are especially suitable for beginners:
@@ -22,10 +23,10 @@ const Post11 = () => {
         </div>
 
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             BULLET VIBRATORS
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             In terms of first sexual toys, it is recommended to use a bullet
             vibrator – small and rather unobtrusive, but versatile. This sex toy
             is strong on vibrations and hence is able to precisely vibrate the
@@ -39,10 +40,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             RABBIT VIBRATORS
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             The rabbit vibrator is popular among the newcomers as it gives
             vaginal and clitoral orgasms at the same time. Major features are
             the shaft with internal ribbing and the bunny clitoral stimulator.
@@ -53,10 +54,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             BUTT PLUGS
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             Starter butt plug is a rather small and narrow anal beads massager
             designed for those who want to introduce slow pleasure of the anal
             region into their practice. It works in a way that it is inserted
@@ -71,10 +72,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             FINGER VIBRATOR
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             Finger vibrator is a compact and rather discrete piece that can be
             worn and provides intense sensations to the targeted zones. It is
             equipped for basic usage since it is meant for entry-level users,
@@ -87,10 +88,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             WAND MASSAGER
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             The wand massager is a strong type of handheld device designed for
             external use. It resonates and when it touches delicate body parts,
             it gives very strong sensations, thus suitable for beginners in
@@ -102,10 +103,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10 font-avenirCF">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             DILDO
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             Dildos used in the sex practice are multi-functional sex items that
             can only be used for the stimulation of the vagina and the anus and
             are appropriate for beginners. Sizes and shapes do cover them, which
@@ -117,10 +118,10 @@ const Post11 = () => {
           </p>
         </div>
         <div className="px-2 md:px-40">
-          <h1 className="text-2xl text-slate-600 text-left py-10 font-avenirCF">
+          <h1 className="text-lg text-slate-600 text-left py-10 font-arialBlackCF font-light">
             CLITORAL SUCTION TOY
           </h1>
-          <p className="font-arialBlackCF">
+          <p className="font-avenirCF text-lg">
             Clitoral suction devices are those devices that work on th principle
             of applying pressure on the clitoris through blowing air with the
             help of tubes, which in fact gives a strong experience of pleasure.
@@ -134,6 +135,7 @@ const Post11 = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

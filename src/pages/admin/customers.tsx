@@ -76,7 +76,7 @@ const Customers = () => {
     const err = error as CustomError;
     toast.error(err.data.message);
   }
-  console.log("data from customer -", data);
+  // console.log("data from customer -", data);
 
   useEffect(() => {
     if (data)

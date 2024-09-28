@@ -57,7 +57,7 @@ const TransactionManagement = () => {
   const [updateOrder] = useUpdateOrderMutation();
   const [deleteOrder] = useDeleteOrderMutation();
 
-  console.log("data from transactionmngmnt-", orderItems);
+  // console.log("data from transactionmngmnt-", orderItems);
 
   const updateHandler = async () => {
     const res = await updateOrder({

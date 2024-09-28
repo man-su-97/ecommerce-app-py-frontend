@@ -33,7 +33,7 @@ export function SignInSide() {
         password
       );
       const user = userCredential.user;
-      console.log("Signed in user:", user);
+      // console.log("Signed in user:", user);
 
       const res = await login({
         email: user.email!,
@@ -97,8 +97,6 @@ export function SignInSide() {
 
         toast.error(message);
       }
-
-      console.log(user);
     } catch (error) {
       toast.error("Sign In Failed");
     }
@@ -260,8 +258,6 @@ export function SignUp() {
 
         toast.error(message);
       }
-
-      console.log(user);
     } catch (error) {
       toast.error("Sign Up Failed");
     }

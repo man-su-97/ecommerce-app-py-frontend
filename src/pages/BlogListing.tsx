@@ -5,6 +5,7 @@ import Post3 from "./Post3";
 import Post4 from "./Post4";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "./footer-section";
+import Post5 from "./Post5";
 
 const BlogListing = () => {
   return (
@@ -30,6 +31,11 @@ const BlogListing = () => {
             <Post4 />
           </Link>
         </Col>
+        <Col md={8} className="mb-4">
+          <Link to={"/post55"}>
+            <Post5 />
+          </Link>
+        </Col>
       </Row>
       <Footer />
     </Container>
@@ -37,9 +43,3 @@ const BlogListing = () => {
 };
 
 export default BlogListing;
-
-{
-  /* <Link to={`/post/${post.slug}`} className="post" key={post.post_id}>
-  <h2 className="post_title">{post.title}</h2>
-</Link>; */
-}

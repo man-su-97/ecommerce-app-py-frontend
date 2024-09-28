@@ -15,9 +15,9 @@ const NewDiscount = () => {
   const [amount, setAmount] = useState<number>(0);
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent form submission default behavior
+    e.preventDefault();
 
-    setBtnLoading(true); // Set loading state while submitting
+    setBtnLoading(true);
     try {
       console.log(code, amount);
       // Validate form input
@@ -25,7 +25,6 @@ const NewDiscount = () => {
         throw new Error("Please enter both coupon code and amount.");
       }
 
-      // Send POST request to create new coupon
       const { data } = await axios.post(
         `${server}/api/v1/payment/coupon/new?id=${user?._id}`,
         {
@@ -36,21 +35,19 @@ const NewDiscount = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true, // If using cookies for authentication
+          withCredentials: true,
         }
       );
 
-      // Handle response from server
       if (data.success) {
-        setCode(""); // Clear form fields on success
+        setCode("");
         setAmount(0);
         toast.success(data.message);
-        navigate("/admin/discount"); // Navigate to the discount page
+        navigate("/admin/discount");
       } else {
         toast.error(data.message || "Failed to create coupon.");
       }
     } catch (error) {
-      // Handle errors
       if (axios.isAxiosError(error)) {
         if (error.response) {
           console.error("Server Error:", error.response.data);
@@ -60,7 +57,6 @@ const NewDiscount = () => {
           toast.error("Request Error");
         }
       } else if (error instanceof Error) {
-        // Handle other errors (like network errors)
         console.error("Network Error:", error.message);
         toast.error("Network Error");
       } else {
@@ -68,7 +64,7 @@ const NewDiscount = () => {
         toast.error("Unexpected Error");
       }
     } finally {
-      setBtnLoading(false); // Reset loading state after form submission
+      setBtnLoading(false);
     }
   };
 

@@ -14,10 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userExist, userNotExist } from "./redux/reducers/userReducer";
 import { getUser } from "./redux/api/userAPI";
 import { Cart2 } from "./pages/Cart2";
-import FaqSection from "./pages/FaqSection";
-import ShippingPolicy from "./pages/ShippingPolicy";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsCondition from "./pages/Terms&Condition";
 import { onAuthStateChanged } from "firebase/auth";
 import { RootState } from "./redux/store";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -41,6 +37,12 @@ const Post11 = lazy(() => import("./pages/Post11"));
 const Post22 = lazy(() => import("./pages/Post22"));
 const Post33 = lazy(() => import("./pages/Post33"));
 const Post44 = lazy(() => import("./pages/Post44"));
+const Post55 = lazy(() => import("./pages/Post55"));
+
+const FaqSection = lazy(() => import("./pages/FaqSection"));
+const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsCondition = lazy(() => import("./pages/Terms&Condition"));
 
 // Admin Routes Importing
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
@@ -122,6 +124,7 @@ function App() {
             <Route path="/post22" element={<Post22 />} />
             <Route path="/post33" element={<Post33 />} />
             <Route path="/post44" element={<Post44 />} />
+            <Route path="/post55" element={<Post55 />} />
 
             <Route
               path="/login"

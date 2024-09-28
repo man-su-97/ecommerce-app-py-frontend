@@ -1,20 +1,21 @@
 @font-face {
-  font-family: "avenirCF";
+  font-family: "Avenir Light";
   src: url("/fonts/Avenir-Light.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "arialBlackCF";
+  font-family: "Arial Black";
   src: url("/fonts/ariblk.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "libreBaskervileCF";
-  src: url("/fonts/LibreBaskerville-Bold.ttf") format("truetype");
-  font-weight: bold;
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville-Regular.ttf") format("truetype");
+
+  font-weight: normal;
   font-style: normal;
 }

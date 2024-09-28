@@ -96,18 +96,20 @@ const Navbar2 = ({ user }: PropsType) => {
   };
 
   const MenuLinks = () => (
-    <div className="flex flex-col items-start md:flex-row relative gap-5 md:gap-1 md:space-x-8 md:ml-8 font-avenirCF">
+    <div className="flex text-sm flex-col items-start md:flex-row relative gap-12 md:gap-1 md:space-x-8 md:ml-8 font-avenirCF ">
       <Link to="/" onClick={handleLinkClick}>
-        HOME
+        <span className="text-3xl font-medium md:text-sm md:font-normal">
+          HOME
+        </span>
       </Link>
       <Link to="/product-listing" onClick={handleLinkClick}>
-        SHOP
+        <span className="text-3xl font-medium md:text-sm">SHOP</span>
       </Link>
       <Link to="/blog-listing" onClick={handleLinkClick}>
-        BLOG
+        <span className="text-3xl font-medium md:text-sm">BLOG</span>
       </Link>
       <Link to="/contact-listing" onClick={handleLinkClick}>
-        CONTACT
+        <span className="text-3xl font-medium md:text-sm">CONTACT</span>
       </Link>
     </div>
   );
@@ -138,7 +140,7 @@ const Navbar2 = ({ user }: PropsType) => {
       <div className="hidden md:flex md:relative space-x-8">
         <MenuLinks />
       </div>
-      <div className="ml-32 md:ml-0 size-28 md:size-36">
+      <div className="ml-36 size-32 md:ml-0 md:size-44">
         <Link to="/">
           <img src={logo} alt="logo" className="" />
         </Link>
@@ -150,7 +152,7 @@ const Navbar2 = ({ user }: PropsType) => {
         >
           <IoSearchOutline size={25} />
           <input
-            className="bg-transparent p-2 w-full border-none focus:ring-0"
+            className="bg-transparent p-2 w-full border-none focus:ring-0 text-sm"
             placeholder="Search..."
             value={search}
             onChange={(e) => handleInputChange(e.target.value)}
@@ -298,7 +300,7 @@ const Navbar2 = ({ user }: PropsType) => {
               >
                 <IoSearchOutline size={25} />
                 <input
-                  className="bg-transparent p-2 w-full border-none focus:ring-0"
+                  className="bg-transparent p-2 w-full border-none focus:ring-0 mb-2"
                   placeholder="Search..."
                   value={search}
                   onChange={(e) => handleInputChange(e.target.value)}
@@ -307,7 +309,7 @@ const Navbar2 = ({ user }: PropsType) => {
                 />
                 {searchOpen && searchedData && searchedData.products && (
                   <div
-                    className="absolute top-14 left-0 z-20 px-3 py-4 max-h-[320px] min-w-[340px] overflow-y-auto bg-white border"
+                    className="absolute top-14 left-0 z-20 px-3 py-4 max-h-[320px] min-w-[340px] overflow-y-auto bg-white border "
                     style={{ boxShadow: "0px 0px 8px #ddd" }}
                   >
                     {searchedData.products.length > 0 ? (

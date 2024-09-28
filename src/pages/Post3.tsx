@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import post3_banner_img from "../assets/sex toys and health risk.jpg";
+import post3_banner_img from "../assets/sex_toys_and_health_risk.jpg";
 
 const Post3 = () => {
   return (

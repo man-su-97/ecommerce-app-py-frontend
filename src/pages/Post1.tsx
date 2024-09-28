@@ -1,5 +1,3 @@
-// Post1.js
-
 import { Link } from "react-router-dom";
 import post1_img from "../assets/Best beginner vibrators.png";
 

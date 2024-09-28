@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLatestProductsQuery } from "../redux/api/productAPI";
 import SwiperCore from "swiper";
 import { addToCart } from "../redux/reducers/cartReducer";
@@ -11,10 +11,34 @@ import toast from "react-hot-toast";
 import { CartItem } from "../types/types";
 import { Skeleton } from "../components/Loader";
 import { ProductCard } from "./ProductCard";
+import CartSidebar from "../components/CartSideBar";
 
 const ProductSlider = ({ text }: { text: string }) => {
   const swiperRef = useRef<SwiperCore | null>(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
   const { data: latestProducts, isLoading, error } = useLatestProductsQuery("");
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setIsCartOpen(false);
+      }
+    };
+
+    if (isCartOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCartOpen]);
 
   const slideNext = () => {
     if (swiperRef.current) {
@@ -33,10 +57,10 @@ const ProductSlider = ({ text }: { text: string }) => {
     if (cartItem.stock < 1) return toast.error("Out of Stock");
 
     dispatch(addToCart(cartItem));
+    setIsCartOpen(true);
     toast.success("Added to cart");
   };
 
-  // Handle loading state
   if (isLoading)
     return (
       <div>
@@ -44,7 +68,6 @@ const ProductSlider = ({ text }: { text: string }) => {
       </div>
     );
 
-  // Handle error state
   if (error) return <div>Error: {"Error from Slider"}</div>;
 
   return (
@@ -109,6 +132,11 @@ const ProductSlider = ({ text }: { text: string }) => {
             &gt;
           </button>
         </div>
+        <CartSidebar
+          ref={sidebarRef}
+          isCartOpen={isCartOpen}
+          setIsCartOpen={setIsCartOpen}
+        />
       </div>
     </div>
   );
