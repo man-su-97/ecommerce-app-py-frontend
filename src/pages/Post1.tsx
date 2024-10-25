@@ -16,7 +16,7 @@ const Post1 = () => {
         <h1 className="text-base md:text-3xl text-gray-600 md:font-medium pb-10 md:pb-0 text-left md:text-start">
           7 OF THE BEST SEX TOYS FOR NEWBIES IN 2024
         </h1>
-        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden">
+        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden font-avenirCF">
           Hi and welcome to our sex toys guide specially designed for the
           newcomers in the world of adult entertainment. We have included in
           this list of toys that are especially suitable for beginners: whether
@@ -26,7 +26,7 @@ const Post1 = () => {
         </p>
         <Link to={"/post11"}>
           <button className="bg-[#5E5E4A] rounded-sm md:rounded-md px-1 md:p-2 text-white">
-            <span className="text-sm md:text-lg">Read More</span>
+            <span className="text-sm md:text-lg font-avenirCF">Read More</span>
           </button>
         </Link>
       </div>

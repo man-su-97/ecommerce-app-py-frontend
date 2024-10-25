@@ -16,7 +16,7 @@ const Post4 = () => {
         <h1 className="text-base md:text-3xl text-gray-600 md:font-medium text-start pb-10 md:pb-0">
           How to Clean & Maintain Your Sex Toys: A Comprehensive Guide
         </h1>
-        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden">
+        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden font-avenirCF">
           Maintenance and cleaning of the sex toys are not only crucial for
           safeguarding your health and promoting the long life of the toys but
           also for boosting the pleasure of your sex life. Proper maintenance
@@ -27,7 +27,7 @@ const Post4 = () => {
         </p>
         <Link to={"/post44"}>
           <button className="bg-[#5E5E4A] rounded-sm md:rounded-md px-1 md:p-2 text-white">
-            <span className="text-sm md:text-lg">Read More</span>
+            <span className="text-sm md:text-lg font-avenirCF">Read More</span>
           </button>
         </Link>
       </div>

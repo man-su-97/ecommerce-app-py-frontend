@@ -110,7 +110,7 @@ function Navbar({ user }: PropsType) {
                 </Link>
                 <button
                   onClick={logoutHandler}
-                  className="bg-red-600 text-white p-1 rounded"
+                  className=" text-white p-1 rounded"
                 >
                   Sign Out
                 </button>

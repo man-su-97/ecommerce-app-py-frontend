@@ -49,7 +49,9 @@ export const ProductpageAccordion = ({
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <Typography fontSize={15}>PRODUCT INFO</Typography>
+            <Typography fontSize={15}>
+              <span className="font-avenirCF font-medium">PRODUCT INFO</span>
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography fontSize={15}>{product.description}</Typography>
@@ -64,15 +66,21 @@ export const ProductpageAccordion = ({
             aria-controls="panel2-content"
             id="panel2-header"
           >
-            <Typography fontSize={15}>RETURN & REFUND POLICY</Typography>
+            <Typography fontSize={15}>
+              <p className="font-avenirCF font-medium">
+                RETURN & REFUND POLICY
+              </p>
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              I’m a Return and Refund policy. I’m a great place to let your
-              customers know what to do in case they are dissatisfied with their
-              purchase. Having a straightforward refund or exchange policy is a
-              great way to build trust and reassure your customers that they can
-              buy with confidence.
+              <p className="font-avenirCF">
+                I’m a Return and Refund policy. I’m a great place to let your
+                customers know what to do in case they are dissatisfied with
+                their purchase. Having a straightforward refund or exchange
+                policy is a great way to build trust and reassure your customers
+                that they can buy with confidence.
+              </p>
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -85,15 +93,19 @@ export const ProductpageAccordion = ({
             aria-controls="panel3-content"
             id="panel3-header"
           >
-            <Typography fontSize={15}>SHIPPING INFO</Typography>
+            <Typography fontSize={15} className="font-avenirCF">
+              <p className="font-avenirCF font-medium">SHIPPING INFO</p>
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              I'm a shipping policy. I'm a great place to add more information
-              about your shipping methods, packaging and cost. Providing
-              straightforward information about your shipping policy is a great
-              way to build trust and reassure your customers that they can buy
-              from you with confidence.
+              <p className="font-avenirCF">
+                I'm a shipping policy. I'm a great place to add more information
+                about your shipping methods, packaging and cost. Providing
+                straightforward information about your shipping policy is a
+                great way to build trust and reassure your customers that they
+                can buy from you with confidence.
+              </p>
             </Typography>
           </AccordionDetails>
         </Accordion>

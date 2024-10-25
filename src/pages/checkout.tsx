@@ -26,11 +26,13 @@ const CheckOutForm = () => {
     total,
   } = useSelector((state: RootState) => state.cartReducer);
 
+  console.log("Data - ", total);
+
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string>("Online");
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const totalBeforePayment = paymentMethod === "COD" ? total + 29 : total;
+  const totalBeforePayment = paymentMethod === "COD" ? total + 99 : total;
 
   const dispatch = useDispatch();
 
@@ -47,7 +49,7 @@ const CheckOutForm = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsProcessing(true);
-    const deliveryCharge = paymentMethod === "COD" ? 29 : 0;
+    const deliveryCharge = paymentMethod === "COD" ? 99 : 0;
 
     if (paymentMethod === "COD") {
       try {
@@ -74,7 +76,7 @@ const CheckOutForm = () => {
 
         dispatch(resetCart());
 
-        setShowModal(true); // Show the success modal
+        setShowModal(true);
       } catch (error) {
         console.error("Error creating COD order:", error);
         toast.error("Error creating order. Please try again later.");
@@ -145,11 +147,12 @@ const CheckOutForm = () => {
               );
 
               const verificationResult = verificationRes.data;
+              console.log("verifi - ", verificationRes);
 
               if (verificationResult && verificationResult.success) {
                 dispatch(resetCart());
 
-                setShowModal(true); // Show the success modal
+                setShowModal(true);
               } else {
                 const adaptedError: ResType = {
                   error: {
@@ -218,7 +221,7 @@ const CheckOutForm = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    navigate("/orders"); // Redirect to orders page
+    navigate("/orders");
   };
 
   return (
@@ -276,7 +279,7 @@ const CheckOutForm = () => {
         className="fixed inset-0 flex items-center justify-center z-50 outline-none focus:outline-none"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-out"
       >
-        <div className="bg-white rounded-lg p-6 mx-2 md:p-8 max-w-md w-full mx-auto shadow-lg transform transition-transform duration-300 ease-out scale-100">
+        <div className="bg-white rounded-lg p-6 mx-2 md:p-8 max-w-md w-full shadow-lg transform transition-transform duration-300 ease-out scale-100">
           <h2 className="text-xl md:text-2xl font-bold mb-4 text-center font-avenirCF">
             Order Placed Successfully!
           </h2>

@@ -17,14 +17,14 @@ const Post5 = () => {
           Understanding Sex Toys in India: In this article we explain important
           things that you must know
         </h1>
-        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden">
+        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden font-avenirCF">
           During shopping have you ever felt that the usage of the sex toys is
           legal or not in India? Now, let’s explain it in easy-to-understand
           language.
         </p>
         <Link to={"/post55"}>
           <button className="bg-[#5E5E4A] rounded-sm md:rounded-md px-1 md:p-2 text-white">
-            <span className="text-sm md:text-lg">Read More</span>
+            <span className="text-sm md:text-lg font-avenirCF">Read More</span>
           </button>
         </Link>
       </div>

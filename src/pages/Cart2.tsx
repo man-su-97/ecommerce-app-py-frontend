@@ -21,6 +21,14 @@ export const Cart2 = () => {
   const { cartItems, subtotal, total, shippingCharges, discount } = useSelector(
     (state: RootState) => state.cartReducer
   );
+  console.log(
+    "from cart - ",
+    cartItems,
+    subtotal,
+    total,
+    shippingCharges,
+    discount
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.userReducer);
@@ -93,17 +101,6 @@ export const Cart2 = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row px-5 box-border md:px-52 pt-20 space-y-5 md:space-x-10 min-h-screen font-avenirCF">
-        {/* {cartItems.length > 0 ? (
-          <Link to="/shipping">
-            <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
-              <span className="text-white">Checkout</span>
-            </button>
-          </Link>
-        ) : (
-          <button className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2">
-            <span className="text-white">Checkout</span>
-          </button>
-        )} */}
         <button
           onClick={handleCheckout}
           className="md:hidden mt-[-20px] w-full bg-[#5E5E4A] py-2"

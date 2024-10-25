@@ -60,14 +60,13 @@ export const cartReducer = createSlice({
       if (state.cartItems.length === 0) {
         state.shippingCharges = 0;
       } else if (state.subtotal < 1000) {
-        state.shippingCharges = 100;
+        state.shippingCharges = 0;
       } else {
         state.shippingCharges = 0;
       }
 
       state.tax = Math.round(state.subtotal * 0.01027);
-      state.total =
-        state.subtotal + state.tax + state.shippingCharges - state.discount;
+      state.total = state.subtotal + state.shippingCharges - state.discount;
     },
 
     discountApplied: (state, action: PayloadAction<number>) => {
@@ -77,7 +76,7 @@ export const cartReducer = createSlice({
       state.shippingInfo = action.payload;
     },
     toggleCartSidebar: (state, action: PayloadAction<boolean>) => {
-      state.isCartOpen = action.payload; // Toggle sidebar visibility
+      state.isCartOpen = action.payload;
     },
     resetCart: () => initialState,
   },

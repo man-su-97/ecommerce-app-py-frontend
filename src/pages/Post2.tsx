@@ -17,7 +17,7 @@ const Post2 = () => {
           A Step-by-Step Guide to Using Vibrators: Internal, External, Combo,
           Anal and Prostate Massagers
         </h1>
-        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden">
+        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden font-avenirCF">
           Thus, stepping into a realm of vibrators does not seem to be very
           complicated for starters although it can be very entertaining. This
           guide is meant to make it easy for you and to guide you as you search
@@ -25,7 +25,7 @@ const Post2 = () => {
         </p>
         <Link to={"/post22"}>
           <button className="bg-[#5E5E4A] rounded-sm md:rounded-md px-1 md:p-2 text-white">
-            <span className="text-sm md:text-lg">Read More</span>
+            <span className="text-sm md:text-lg font-avenirCF">Read More</span>
           </button>
         </Link>
       </div>

@@ -51,7 +51,7 @@ const AgeVerification = () => {
           <div className="text-xs text-blue-700 pt-4">
             <p>* By entering the website, you are agreeing to the</p>
             <p>
-              <span className="underline decoration-solid">terms of use </span>
+              <span className="underline decoration-solid">Terms of Use </span>
               and{" "}
               <span className="underline decoration-solid">Privacy Policy</span>
             </p>

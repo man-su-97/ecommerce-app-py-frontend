@@ -8,27 +8,25 @@ function Footer() {
           <div className="py-10 flex flex-col gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
               <Link to="/product-listing">
-                <h1 className="text-2xl md:text-2xl pb-5">SHOP</h1>
-                <p className="text-[18px] md:text-base font-normal">WOMEN</p>
-                <p className="text-[18px] md:text-base font-normal">LGBTQ+</p>
+                <h1 className="text-2xl md:text-2xl pb-4">SHOP</h1>
+                <p className="text-sm">WOMEN</p>
+                <p className="text-sm ">LGBTQ+</p>
               </Link>
             </div>
           </div>
           <div className="py-10 flex flex-col gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-2xl md:text-2xl pb-5">HELP</h1>
+              <h1 className="text-2xl md:text-2xl pb-4">HELP</h1>
               <Link to={"/terms-section"}>
-                <button className="text-[18px] md:text-base font-normal">
+                <button className="text-sm md:text-base font-normal">
                   TERMS & CONDITIONS
                 </button>
               </Link>
               <Link to={"/privacy-section"}>
-                <button className="text-[18px] md:text-base font-normal">
-                  PRIVACY POLICY
-                </button>
+                <button className="text-sm font-normal">PRIVACY POLICY</button>
               </Link>
               <Link to={"/shipping-section"}>
-                <button className="text-[18px] md:text-base font-normal">
+                <button className="text-sm font-normal">
                   SHIPPING & RETURNS
                 </button>
               </Link>
@@ -38,29 +36,23 @@ function Footer() {
         <div className="flex flex-col-reverse md:flex-col ">
           <div className="pt-20 flex flex-col items-start gap-3">
             <div className="flex flex-col items-center md:items-start space-y-3 md:space-y-1">
-              <h1 className="text-[17px] md:text-2xl">PLEASUREYOURSELF</h1>
+              <h1 className="text-[17px] md:text-2xl pb-4">PLEASUREYOURSELF</h1>
 
               <Link to={"/blog-listing"}>
-                <button className="text-[14px] md:text-base font-thin">
-                  BLOG
-                </button>
+                <button className="text-sm  font-thin">BLOG</button>
               </Link>
               <Link to={"/contact-listing"}>
-                <button className="text-[14px] md:text-base font-thin">
-                  CONTACT US
-                </button>
+                <button className="text-sm font-thin">CONTACT US</button>
               </Link>
               <Link to={"/faq-section"}>
-                <button className="text-[14px] md:text-base font-thin">
-                  FAQ
-                </button>
+                <button className="text-sm font-thin">FAQ</button>
               </Link>
             </div>
           </div>
           <div className=" hidden md:block mt-14">
             <div className="pb-10 flex flex-col gap-3">
-              <h1 className="text-3xl  ">NEWSLETTER SIGN UP</h1>
-              <p className="font-thin md:text-base">
+              <h1 className="text-2xl">NEWSLETTER SIGN UP</h1>
+              <p className="font-thin md:text-base text-[14px]">
                 Recieve our latest updates
               </p>
               <input placeholder="enter your email" />

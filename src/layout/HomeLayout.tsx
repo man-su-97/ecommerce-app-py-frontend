@@ -46,7 +46,7 @@ function HomeLayout() {
       </section>
 
       <div className="flex justify-center max-w-full">
-        <h1 className="text-2xl py-10 md:text-3xl md:my-20 font-avenirCF tracking-wide font-thin leading-loose">
+        <h1 className="text-2xl py-4 md:text-3xl lg:text-4xl md:my-20 font-avenirCF tracking-widest font-thin leading-loose">
           Exceptional Sex Toys for Women
         </h1>
       </div>
@@ -76,15 +76,15 @@ function HomeLayout() {
             className="md:min-h-[590px] lg:min-h-auto md:min-w-[490px] lg:min-w-auto"
           />
         </div>
-        <div className="w-full md:w-1/2 h-80 hidden md:block ">
+        <div className="w-full md:w-1/2   hidden md:block ">
           <img
             src={sex_toys_for_women2}
             alt="story-img-1"
-            className="md:min-h-[590px] lg:min-h-auto md:min-w-[490px] lg:min-w-auto"
+            className="md:min-h-[580px] lg:min-h-auto md:min-w-[490px] lg:min-w-auto"
           />
         </div>
       </div>
-      <div className="bg-[#DCB4BC] pb-16  pt-20 md:pt-40 mb-28 w-screen h-auto">
+      <div className="bg-[#f8eadc] pb-16  pt-20 md:pt-40 mb-28 w-screen h-auto">
         <div className="mb-10 md:mb-20">
           <h1 className="mx-auto font-thin text-2xl md:text-5xl tracking-widest font-avenirCF">
             MOST POPULAR
@@ -92,7 +92,7 @@ function HomeLayout() {
         </div>
         <ProductSlider text={"All Products"} />
       </div>
-      <div className="px-10 xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-center md:space-x-10">
+      <div className="px-10 xl:ml-32 lg:px-32 flex flex-col lg:flex-row w-full h-full items-start md:space-x-10">
         <div className="w-full lg:w-2/5 h-full  lg:mt-[-80px] ">
           <img
             src={adult_toys}
@@ -102,14 +102,14 @@ function HomeLayout() {
         </div>
 
         <div className="w-full lg:w-3/5 h-full font-avenirCF">
-          <div className="flex flex-col md:items-start items-center w-full lg:w-96  md:space-y-1  lg:ml-0 mt-8 lg:mt-0 ">
+          <div className="flex flex-col md:items-start items-center w-full lg:w-96  md:space-y-1  lg:ml-0 mt-0  ">
             <div>
               <h2 className="text-2xl md:text-[40px] font-thin">
                 BEYOND PERFECT
               </h2>
             </div>
 
-            <p className="text-center md:text-left overflow-hidden max-w-full lg:max-w-[40rem] py-6 px-4 md:px-0 font-avenirCF font-thin text-[19px] leading-relaxed tracking-wide">
+            <p className="text-center md:text-left overflow-hidden max-w-full lg:max-w-[44rem] py-6 px-4 md:px-0 font-avenirCF font-thin text-[17px] leading-relaxed tracking-wide">
               Why should one go for the ordinary when there is extraordinary?
               Being one of the fastest-growing providers of premium sex toys in
               India. Our products are so smooth, like silk for customers to
@@ -126,10 +126,10 @@ function HomeLayout() {
       </div>
 
       <div className="flex flex-col items-center justify-between">
-        <h3 className="text-2xl md:text-[24px] mt-8 md:mt-32 font-thin font-avenirCF text-nowrap">
+        <h3 className="text-2xl md:text-[40px] mt-8 md:mt-32 font-thin font-avenirCF text-nowrap">
           PLEASURE FOR EVERYONE
         </h3>
-        <p className="text-center overflow-hidden max-w-full lg:max-w-[40rem] py-8 px-4 font-avenirCF font-normal text-[22px] leading-relaxed tracking-wide">
+        <p className="text-center overflow-hidden max-w-full lg:max-w-[42rem] py-8 px-4 font-avenirCF font-normal text-[17px] leading-relaxed tracking-wide">
           At Pleasure Yourself, we celebrate your journey to self-discovery. As
           pioneers in personalized adult products for the LGBTQ+ community,
           we're proud to support your unique identity and desires. With our

@@ -241,32 +241,36 @@ const ProductDetails = () => {
 
       <dialog
         ref={reviewDialogRef}
-        className="absolute mx-auto my-auto min-w-[270px] min-h-[400px] p-3"
+        className="absolute mx-auto my-auto  min-w-60 md:min-w-72 min-h-[400px] p-5 md:p-10"
       >
         <button onClick={reviewCloseHandler}>
           X <span>close</span>
         </button>
-        <h2 className="text-base my-2">Write a Review</h2>
+        <h2 className="text-base my-2 text-left">Write a Review</h2>
+        <RatingsEditable />
         <form onSubmit={submitReview}>
-          <textarea
-            value={reviewComment}
-            onChange={(e) => setReviewComment(e.target.value)}
-            placeholder="Review..."
-          ></textarea>
-          <RatingsEditable />
-          <button
-            className="bg-[#5E5E4A] px-3 py-1 mt-5 text-white text-sm"
-            disabled={reviewSubmitLoading}
-            type="submit"
-          >
-            Submit
-          </button>
+          <div className="flex flex-col">
+            <textarea
+              value={reviewComment}
+              onChange={(e) => setReviewComment(e.target.value)}
+              className=" min-h-48 md:min-h-60 md:min-w-96"
+              placeholder="Review..."
+            ></textarea>
+
+            <button
+              className="bg-[#5E5E4A] px-3 py-1 mt-5 text-white text-sm"
+              disabled={reviewSubmitLoading}
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </dialog>
 
       <section className="mx-5 md:mx-60 mt-10">
         <article className="max-h-96 mx-auto flex items-center gap-2 px-5">
-          <h2 onClick={showDialog} className="text-sm">
+          <h2 onClick={showDialog} className="text-base font-bold">
             Write Review
           </h2>
           {reviewsResponse.isLoading

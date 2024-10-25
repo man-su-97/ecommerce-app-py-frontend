@@ -17,7 +17,7 @@ const Post3 = () => {
           Determining the Relationship between Sexual Enhancement Products and
           Health Complications
         </h1>
-        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden">
+        <p className="hidden md:block py-7 md:py-10 font-light max-h-5 md:max-h-full overflow-hidden font-avenirCF">
           Using sex toys can add excitement to your intimate moments, increasing
           pleasure and exploration.. But it is also important to realize the
           presence of possible threats and when these things should be avoided
@@ -26,7 +26,7 @@ const Post3 = () => {
         </p>
         <Link to={"/post33"}>
           <button className="bg-[#5E5E4A] rounded-sm md:rounded-md px-1 md:p-2 text-white">
-            <span className="text-sm md:text-lg">Read More</span>
+            <span className="text-sm md:text-lg font-avenirCF">Read More</span>
           </button>
         </Link>
       </div>
